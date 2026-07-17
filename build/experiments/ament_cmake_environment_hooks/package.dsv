@@ -1,4 +1,0 @@
-source;share/experiments/local_setup.bash
-source;share/experiments/local_setup.dsv
-source;share/experiments/local_setup.sh
-source;share/experiments/local_setup.zsh

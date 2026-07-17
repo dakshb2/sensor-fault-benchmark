@@ -1,0 +1,21 @@
+# colcon
+build/
+install/
+log/
+COLCON_IGNORE
+
+# python
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+
+# results / bags (regenerated, never committed except pinned baselines)
+results/
+**/bags/
+*.db3
+*.mcap
+*.tum
+
+# editor / os
+.DS_Store
