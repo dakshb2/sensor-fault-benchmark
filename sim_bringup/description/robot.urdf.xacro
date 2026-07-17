@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<robot name="diff_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ===== PROPERTIES ===== -->
+  <!-- Define sizes and masses here so we can reuse them -->
+  <xacro:property name="base_length" value="0.4"/>
+  <xacro:property name="base_width" value="0.3"/>
+  <xacro:property name="base_height" value="0.1"/>
+  <xacro:property name="base_mass" value="1.0"/>
+
+  <xacro:property name="wheel_radius" value="0.05"/>
+  <xacro:property name="wheel_thickness" value="0.04"/>
+  <xacro:property name="wheel_mass" value="0.1"/>
+
+  <xacro:property name="caster_radius" value="0.025"/>
+
+  <!-- ===== BASE LINK ===== -->
+  <!-- The main body of the robot -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 0.8 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${base_mass}"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <!-- ===== WHEEL MACRO ===== -->
+  <!-- A macro so we don't write the same wheel code twice -->
+  <xacro:macro name="wheel" params="name y_offset">
+    <link name="${name}_wheel">
+      <visual>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
+        </geometry>
+        <material name="black">
+          <color rgba="0 0 0 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="${wheel_mass}"/>
+        <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0"/>
+      </inertial>
+    </link>
+
+    <joint name="${name}_wheel_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="${name}_wheel"/>
+      <origin xyz="0 ${y_offset} ${-base_height/2}" rpy="-1.5708 0 0"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- Create left and right wheels using the macro -->
+  <xacro:wheel name="left" y_offset="${base_width/2 + wheel_thickness/2}"/>
+  <xacro:wheel name="right" y_offset="${-(base_width/2 + wheel_thickness/2)}"/>
+
+  <!-- ===== CASTER WHEEL ===== -->
+  <link name="caster_wheel">
+    <visual>
+      <geometry>
+        <sphere radius="${caster_radius}"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="${caster_radius}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="0.0001" iyy="0.0001" izz="0.0001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="caster_wheel_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="caster_wheel"/>
+    <origin xyz="${base_length/2 - caster_radius} 0 ${-base_height/2 - wheel_radius + caster_radius}"/>
+  </joint>
+
+  <!-- ===== LIDAR ===== -->
+  <link name="lidar_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.04" length="0.05"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.04" length="0.05"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="0.0001" iyy="0.0001" izz="0.0001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="lidar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar_link"/>
+    <origin xyz="0 0 ${base_height/2 + 0.025}"/>
+  </joint>
+
+  <!-- ===== CAMERA ===== -->
+  <link name="camera_link">
+    <visual>
+      <geometry>
+        <box size="0.03 0.08 0.03"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0 0.8 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.03 0.08 0.03"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.02"/>
+      <inertia ixx="0.0001" iyy="0.0001" izz="0.0001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="camera_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+    <origin xyz="${base_length/2} 0 ${base_height/2}"/>
+  </joint>
+
+  <!-- ===== IMU ===== -->
+  <link name="imu_link">
+    <inertial>
+      <mass value="0.01"/>
+      <inertia ixx="1e-6" iyy="1e-6" izz="1e-6" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0 0 ${base_height/2}"/>
+  </joint>
+
+  <xacro:include filename="$(find sim_bringup)/description/gazebo_control.xacro"/>
+
+</robot>
