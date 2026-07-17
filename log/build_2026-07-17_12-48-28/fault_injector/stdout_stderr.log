@@ -1,0 +1,31 @@
+running egg_info
+creating ../build/fault_injector/fault_injector.egg-info
+writing ../build/fault_injector/fault_injector.egg-info/PKG-INFO
+writing dependency_links to ../build/fault_injector/fault_injector.egg-info/dependency_links.txt
+writing entry points to ../build/fault_injector/fault_injector.egg-info/entry_points.txt
+writing requirements to ../build/fault_injector/fault_injector.egg-info/requires.txt
+writing top-level names to ../build/fault_injector/fault_injector.egg-info/top_level.txt
+writing manifest file '../build/fault_injector/fault_injector.egg-info/SOURCES.txt'
+reading manifest file '../build/fault_injector/fault_injector.egg-info/SOURCES.txt'
+writing manifest file '../build/fault_injector/fault_injector.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build
+creating /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build/lib
+creating /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build/lib/fault_injector
+copying fault_injector/__init__.py -> /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build/lib/fault_injector
+running install
+running install_lib
+creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector
+copying /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build/lib/fault_injector/__init__.py -> /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector
+byte-compiling /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index
+creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index/resource_index
+creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index/resource_index/packages
+copying resource/fault_injector -> /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index/resource_index/packages
+copying package.xml -> /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector
+running install_egg_info
+Copying ../build/fault_injector/fault_injector.egg-info to /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector-0.0.0-py3.10.egg-info
+running install_scripts
+writing list of installed files to '/home/dakshb2/sensor-fault-benchmark/build/fault_injector/install.log'

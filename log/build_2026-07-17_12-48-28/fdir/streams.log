@@ -1,0 +1,33 @@
+[0.598s] Invoking command in '/home/dakshb2/sensor-fault-benchmark/fdir': PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/build/fdir/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dakshb2/sensor-fault-benchmark/install/fdir/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/fdir build --build-base /home/dakshb2/sensor-fault-benchmark/build/fdir/build install --record /home/dakshb2/sensor-fault-benchmark/build/fdir/install.log --single-version-externally-managed install_data
+[0.701s] running egg_info
+[0.702s] creating ../build/fdir/fdir.egg-info
+[0.702s] writing ../build/fdir/fdir.egg-info/PKG-INFO
+[0.705s] writing dependency_links to ../build/fdir/fdir.egg-info/dependency_links.txt
+[0.705s] writing entry points to ../build/fdir/fdir.egg-info/entry_points.txt
+[0.705s] writing requirements to ../build/fdir/fdir.egg-info/requires.txt
+[0.705s] writing top-level names to ../build/fdir/fdir.egg-info/top_level.txt
+[0.705s] writing manifest file '../build/fdir/fdir.egg-info/SOURCES.txt'
+[0.706s] reading manifest file '../build/fdir/fdir.egg-info/SOURCES.txt'
+[0.707s] writing manifest file '../build/fdir/fdir.egg-info/SOURCES.txt'
+[0.707s] running build
+[0.707s] running build_py
+[0.707s] creating /home/dakshb2/sensor-fault-benchmark/build/fdir/build
+[0.707s] creating /home/dakshb2/sensor-fault-benchmark/build/fdir/build/lib
+[0.707s] creating /home/dakshb2/sensor-fault-benchmark/build/fdir/build/lib/fdir
+[0.707s] copying fdir/__init__.py -> /home/dakshb2/sensor-fault-benchmark/build/fdir/build/lib/fdir
+[0.707s] running install
+[0.707s] running install_lib
+[0.708s] creating /home/dakshb2/sensor-fault-benchmark/install/fdir/lib/python3.10/site-packages/fdir
+[0.708s] copying /home/dakshb2/sensor-fault-benchmark/build/fdir/build/lib/fdir/__init__.py -> /home/dakshb2/sensor-fault-benchmark/install/fdir/lib/python3.10/site-packages/fdir
+[0.708s] byte-compiling /home/dakshb2/sensor-fault-benchmark/install/fdir/lib/python3.10/site-packages/fdir/__init__.py to __init__.cpython-310.pyc
+[0.708s] running install_data
+[0.708s] creating /home/dakshb2/sensor-fault-benchmark/install/fdir/share/ament_index
+[0.708s] creating /home/dakshb2/sensor-fault-benchmark/install/fdir/share/ament_index/resource_index
+[0.708s] creating /home/dakshb2/sensor-fault-benchmark/install/fdir/share/ament_index/resource_index/packages
+[0.708s] copying resource/fdir -> /home/dakshb2/sensor-fault-benchmark/install/fdir/share/ament_index/resource_index/packages
+[0.709s] copying package.xml -> /home/dakshb2/sensor-fault-benchmark/install/fdir/share/fdir
+[0.709s] running install_egg_info
+[0.709s] Copying ../build/fdir/fdir.egg-info to /home/dakshb2/sensor-fault-benchmark/install/fdir/lib/python3.10/site-packages/fdir-0.0.0-py3.10.egg-info
+[0.709s] running install_scripts
+[0.716s] writing list of installed files to '/home/dakshb2/sensor-fault-benchmark/build/fdir/install.log'
+[0.733s] Invoked command in '/home/dakshb2/sensor-fault-benchmark/fdir' returned '0': PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/build/fdir/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dakshb2/sensor-fault-benchmark/install/fdir/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/fdir build --build-base /home/dakshb2/sensor-fault-benchmark/build/fdir/build install --record /home/dakshb2/sensor-fault-benchmark/build/fdir/install.log --single-version-externally-managed install_data

@@ -1,0 +1,33 @@
+[0.595s] Invoking command in '/home/dakshb2/sensor-fault-benchmark/scoring': PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/build/scoring/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dakshb2/sensor-fault-benchmark/install/scoring/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/scoring build --build-base /home/dakshb2/sensor-fault-benchmark/build/scoring/build install --record /home/dakshb2/sensor-fault-benchmark/build/scoring/install.log --single-version-externally-managed install_data
+[0.700s] running egg_info
+[0.700s] creating ../build/scoring/scoring.egg-info
+[0.700s] writing ../build/scoring/scoring.egg-info/PKG-INFO
+[0.702s] writing dependency_links to ../build/scoring/scoring.egg-info/dependency_links.txt
+[0.703s] writing entry points to ../build/scoring/scoring.egg-info/entry_points.txt
+[0.703s] writing requirements to ../build/scoring/scoring.egg-info/requires.txt
+[0.703s] writing top-level names to ../build/scoring/scoring.egg-info/top_level.txt
+[0.704s] writing manifest file '../build/scoring/scoring.egg-info/SOURCES.txt'
+[0.704s] reading manifest file '../build/scoring/scoring.egg-info/SOURCES.txt'
+[0.704s] writing manifest file '../build/scoring/scoring.egg-info/SOURCES.txt'
+[0.704s] running build
+[0.704s] running build_py
+[0.704s] creating /home/dakshb2/sensor-fault-benchmark/build/scoring/build
+[0.704s] creating /home/dakshb2/sensor-fault-benchmark/build/scoring/build/lib
+[0.704s] creating /home/dakshb2/sensor-fault-benchmark/build/scoring/build/lib/scoring
+[0.704s] copying scoring/__init__.py -> /home/dakshb2/sensor-fault-benchmark/build/scoring/build/lib/scoring
+[0.704s] running install
+[0.705s] running install_lib
+[0.706s] creating /home/dakshb2/sensor-fault-benchmark/install/scoring/lib/python3.10/site-packages/scoring
+[0.706s] copying /home/dakshb2/sensor-fault-benchmark/build/scoring/build/lib/scoring/__init__.py -> /home/dakshb2/sensor-fault-benchmark/install/scoring/lib/python3.10/site-packages/scoring
+[0.706s] byte-compiling /home/dakshb2/sensor-fault-benchmark/install/scoring/lib/python3.10/site-packages/scoring/__init__.py to __init__.cpython-310.pyc
+[0.706s] running install_data
+[0.706s] creating /home/dakshb2/sensor-fault-benchmark/install/scoring/share/ament_index
+[0.706s] creating /home/dakshb2/sensor-fault-benchmark/install/scoring/share/ament_index/resource_index
+[0.706s] creating /home/dakshb2/sensor-fault-benchmark/install/scoring/share/ament_index/resource_index/packages
+[0.706s] copying resource/scoring -> /home/dakshb2/sensor-fault-benchmark/install/scoring/share/ament_index/resource_index/packages
+[0.706s] copying package.xml -> /home/dakshb2/sensor-fault-benchmark/install/scoring/share/scoring
+[0.706s] running install_egg_info
+[0.707s] Copying ../build/scoring/scoring.egg-info to /home/dakshb2/sensor-fault-benchmark/install/scoring/lib/python3.10/site-packages/scoring-0.0.0-py3.10.egg-info
+[0.707s] running install_scripts
+[0.714s] writing list of installed files to '/home/dakshb2/sensor-fault-benchmark/build/scoring/install.log'
+[0.737s] Invoked command in '/home/dakshb2/sensor-fault-benchmark/scoring' returned '0': PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/build/scoring/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dakshb2/sensor-fault-benchmark/install/scoring/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/scoring build --build-base /home/dakshb2/sensor-fault-benchmark/build/scoring/build install --record /home/dakshb2/sensor-fault-benchmark/build/scoring/install.log --single-version-externally-managed install_data
