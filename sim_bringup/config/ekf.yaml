@@ -1,0 +1,46 @@
+### robot_localization EKF — Stage 1 baseline
+### Fuses wheel-odom planar velocities + IMU yaw-rate/accel.
+### INTEGRITY: /ground_truth/* is intentionally ABSENT and must stay absent.
+### There is no map frame and no global corrector, so nothing can mask drift.
+
+ekf_filter_node:
+  ros__parameters:
+    use_sim_time: true
+    frequency: 30.0
+    sensor_timeout: 0.1
+    two_d_mode: true
+    publish_tf: true
+    publish_acceleration: false
+    print_diagnostics: true
+
+    # EKF owns odom -> base_link. world_frame == odom_frame means dead-reckoning
+    # only: the estimate is free to drift, which is exactly what we want to measure.
+    odom_frame: odom
+    base_link_frame: base_link
+    world_frame: odom
+
+    # --- Wheel odometry: planar velocities only (vx, vyaw) ---
+    # Absolute wheel pose is drift-prone and redundant, so it is NOT fused.
+    odom0: /wheel/odometry
+    odom0_config: [false, false, false,
+                   false, false, false,
+                   true,  false, false,
+                   false, false, true,
+                   false, false, false]
+    odom0_differential: false
+    odom0_relative: false
+    odom0_queue_size: 10
+
+    # --- IMU: yaw rate (vyaw) + forward accel (ax) ---
+    # Absolute orientation is NOT fused. (The message orientation is used
+    # internally only to remove gravity; it never enters the state.)
+    imu0: /imu
+    imu0_config: [false, false, false,
+                  false, false, false,
+                  false, false, false,
+                  false, false, true,
+                  true,  false, false]
+    imu0_differential: false
+    imu0_relative: false
+    imu0_remove_gravitational_acceleration: true
+    imu0_queue_size: 10
