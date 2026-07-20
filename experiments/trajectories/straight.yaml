@@ -1,0 +1,4 @@
+name: straight
+description: Pure translation. Isolates translational drift with no turning.
+segments:
+  - {linear_x: 0.3, angular_z: 0.0, duration: 15.0}

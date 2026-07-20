@@ -1,0 +1,10 @@
+name: box
+description: Four straights with left turns between. The default benchmark path.
+segments:
+  - {linear_x: 0.25, angular_z: 0.0, duration: 6.0}
+  - {linear_x: 0.0,  angular_z: 0.5, duration: 3.0}
+  - {linear_x: 0.25, angular_z: 0.0, duration: 6.0}
+  - {linear_x: 0.0,  angular_z: 0.5, duration: 3.0}
+  - {linear_x: 0.25, angular_z: 0.0, duration: 6.0}
+  - {linear_x: 0.0,  angular_z: 0.5, duration: 3.0}
+  - {linear_x: 0.25, angular_z: 0.0, duration: 6.0}

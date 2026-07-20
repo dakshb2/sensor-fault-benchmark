@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import rclpy
 from rclpy.node import Node
 from nav_msgs.msg import Odometry
@@ -11,6 +12,10 @@ class PoseToTum(Node):
         self.declare_parameter('ref_topic', '/ground_truth/odometry')
         self.declare_parameter('est_file', 'est.tum')
         self.declare_parameter('ref_file', 'ref.tum')
+        self.declare_parameter('duration', 0.0)
+
+        self._duration = self.get_parameter('duration').value
+        self._start_time = None
 
         self._est_file = open(self.get_parameter('est_file').value, 'w')
         self._ref_file = open(self.get_parameter('ref_file').value, 'w')
@@ -21,6 +26,27 @@ class PoseToTum(Node):
         self.create_subscription(
             Odometry, self.get_parameter('ref_topic').value,
             self._writer(self._ref_file), 50)
+
+        if self._duration > 0.0:
+            self.create_timer(0.1, self._check_duration)
+            self.get_logger().info(
+                f'Recording for {self._duration} simulation seconds.')
+        else:
+            self.get_logger().info('Recording until interrupted.')
+
+    def _check_duration(self):
+        now = self.get_clock().now().nanoseconds * 1e-9
+
+        if now <= 0.0:
+            return
+
+        if self._start_time is None:
+            self._start_time = now
+            return
+
+        if now - self._start_time >= self._duration:
+            self.get_logger().info('Recording duration reached.')
+            raise SystemExit
 
     def _writer(self, handle):
         def callback(msg):
@@ -44,7 +70,7 @@ def main():
     node = PoseToTum()
     try:
         rclpy.spin(node)
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, SystemExit):
         pass
     finally:
         node.destroy_node()
