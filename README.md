@@ -86,21 +86,28 @@ size the recording window automatically.
 
 Clean-run baseline, differential-drive EKF, no faults injected, using the Stage 1
 EKF configuration in the UTM environment described above. ATE is absolute
-trajectory error (translation part, unaligned); all values in metres. Sample
-sizes are small — these are early figures, not settled numbers.
+trajectory error (translation part, unaligned); all values in metres, from five
+runs per trajectory. These figures characterise total run-to-run variance in one
+environment; they are not a decomposed error budget and have not been validated
+across machines.
 
-| trajectory     | runs | ATE RMSE    | notes                            |
-|----------------|------|-------------|----------------------------------|
-| box            | 3    | ~0.039      | ~12% run-to-run spread           |
-| straight       | 2    | ~0.025      | pure translation, ~2.4 m in-arena|
+| trajectory     | runs | ATE RMSE (mean ± std) | spread | notes                    |
+|----------------|------|-----------------------|--------|--------------------------|
+| straight       | 5    | 0.025 ± 0.002         | 19%    | pure translation, ~2.4 m |
+| box            | 5    | 0.043 ± 0.002         | 13%    | four 90°-ish turns       |
+| figure_eight   | 5    | 0.197 ± 0.001         | 1.3%   | reversing curvature      |
 
 Per-frame relative error (RPE) on the box baseline is about 0.0023 m/frame.
 
-**Noise floor: roughly 6% (box, n=3).** This is the run-to-run variance from
-physics-solver nondeterminism and sensor-noise seeds, and it sets the detection
-threshold — a fault whose effect on ATE is smaller than this spread is not
-distinguishable from noise. With only three runs this is an estimate; more runs
-would tighten it.
+**Noise floor and trajectory sensitivity.** The run-to-run standard deviation is
+roughly constant across trajectories (~0.002 m), set by physics-solver
+nondeterminism and sensor-noise seeds. Because that noise is roughly fixed in
+absolute terms, trajectories with larger accumulated error have proportionally
+*lower* relative noise: figure_eight's ~1.3% spread makes it the most sensitive
+of the three, while a fault on the straight-line run must overcome ~19% variance
+to register. This suggests figure_eight is the trajectory to lead with when
+injecting faults in Stage 2. With five runs each these spreads are estimates, but
+the ordering is consistent.
 
 ## Methodology
 
@@ -129,8 +136,9 @@ robot was verified level at rest (orientation flat to ~1e-7); the pitch it shows
 is a brief transient during acceleration, not a static tilt.
 
 **Trajectories exercise different error sources.** Straight-line ATE (~0.025) is
-lower than box ATE (~0.039); the difference is consistent with the additional
-heading error introduced by turning.
+lower than box ATE (~0.043), which is lower than figure_eight (~0.197). The
+ordering is consistent with the additional heading error introduced by turning,
+and by reversing curvature in the figure_eight case.
 
 ## Known quirks
 

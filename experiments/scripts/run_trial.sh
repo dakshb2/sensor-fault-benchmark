@@ -32,15 +32,27 @@ teardown() {
   pkill -9 -f "topic_tools/relay" 2>/dev/null || true
   pkill -9 -f pose_to_tum         2>/dev/null || true
   pkill -9 -f drive_trajectory    2>/dev/null || true
-  sleep 2
+  sleep 3
 }
 
 # --- 1. clean slate ---
 echo "[1/7] Teardown."
-teardown
-if [ "$(ros2 node list 2>/dev/null | wc -l)" -ne 0 ]; then
-  echo "FAIL: graph not empty after teardown:"; ros2 node list; exit 1
-fi
+set +e   # teardown commands (pkill, grep -v, daemon) return non-zero as normal operation
+for attempt in 1 2 3 4 5; do
+  teardown
+  ros2 daemon stop  >/dev/null 2>&1
+  ros2 daemon start >/dev/null 2>&1
+  n=$(ros2 node list 2>/dev/null | grep -v "transform_listener" | wc -l)
+  if [ "$n" -eq 0 ]; then break; fi
+  echo "       teardown attempt $attempt: $n node(s) remain, retrying..."
+  sleep 3
+  if [ "$attempt" -eq 5 ]; then
+    echo "FAIL: graph not empty after 5 teardown attempts:"; ros2 node list
+    set -e
+    exit 1
+  fi
+done
+set -e   # restore strict mode
 
 # ensure we always clean up, even on error or Ctrl+C
 trap teardown EXIT
