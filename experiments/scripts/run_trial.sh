@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # One-command benchmark trial.
-#   ./run_trial.sh <trajectory.yaml> <output_prefix>
+#   ./run_trial.sh <trajectory.yaml> <output_prefix> [fault_type] [imu_yaw_bias]
 # Runs teardown -> launch -> origin check -> record -> drive -> score -> teardown,
 # refusing to proceed if any integrity gate fails.
 
@@ -17,6 +17,9 @@ set -eo pipefail
 
 TRAJ="${1:?usage: run_trial.sh <trajectory.yaml> <output_prefix>}"
 PREFIX="${2:?usage: run_trial.sh <trajectory.yaml> <output_prefix>}"
+
+FAULT_TYPE="${3:-none}"
+IMU_YAW_BIAS="${4:-0.0}"
 
 EST="$WS/results/${PREFIX}_est.tum"
 REF="$WS/results/${PREFIX}_ref.tum"
@@ -64,10 +67,13 @@ d = yaml.safe_load(open('$TRAJ'))
 print(sum(float(s['duration']) for s in d['segments']) + 4.0)
 ")
 echo "[2/7] Trajectory '$TRAJ' -> record window ${DURATION}s (segments + 4s margin)."
+echo "       fault: $FAULT_TYPE (imu_yaw_bias=$IMU_YAW_BIAS)"
 
 # --- 3. launch bringup in background ---
 echo "[3/7] Launching sim."
-ros2 launch sim_bringup bringup.launch.py > /tmp/bringup.log 2>&1 &
+ros2 launch sim_bringup bringup.launch.py \
+  fault_type:="$FAULT_TYPE" imu_yaw_bias:="$IMU_YAW_BIAS" \
+  > /tmp/bringup.log 2>&1 &
 
 # --- 4. wait for the graph to come up ---
 echo "[4/7] Waiting for /ground_truth/odometry..."
