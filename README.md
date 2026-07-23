@@ -5,10 +5,10 @@ responds to sensor faults. It runs a fixed simulated trajectory, records the
 estimated and ground-truth poses, and computes standard trajectory-error metrics
 (ATE/RPE via [evo](https://github.com/MichaelGrupp/evo)).
 
-The current Stage 1 implementation provides the simulation, an EKF baseline, the
-trajectory runner, and the scoring pipeline — the clean-run half of the
-benchmark. Stage 2 will add YAML-configured faults so the same estimator can be
-evaluated under repeatable IMU, wheel-encoder, and camera failures.
+The Stage 1 clean-run harness is complete: simulation, EKF baseline, trajectory
+runner, and scoring pipeline. Stage 2 is in progress -- the scenario-driven fault
+injector works with scheduled IMU faults; additional fault types, a scorecard
+sweep, and Docker packaging are still to come.
 
 The goal is not a new fault-injection or fault-detection technique — both are
 well established. The goal is to make estimator comparisons easier to reproduce
@@ -22,12 +22,21 @@ scoring separate, so a future detection method cannot draw on information it
 should not have:
 
 - **Faults are injected into raw sensor streams** (`/imu/raw`,
-  `/wheel/odometry/raw`). The estimator subscribes to the clean-named topics
-  (`/imu`, `/wheel/odometry`), which in Stage 1 are fed by identity relays and in
-  Stage 2 by the fault injector. The estimator sees no difference between the two.
-- **Ground truth is consumed only by the `scoring` package.** The estimator and
-  any future detector never subscribe to it; `/ground_truth/*` appears in neither
-  the EKF config nor their manifests.
+  `/wheel/odometry/raw`). The injector republishes on the clean topics (`/imu`,
+  `/wheel/odometry`) that the estimator reads. It is present in the path for both
+  clean and faulted runs — a clean run is simply the passthrough case — so the
+  two conditions differ only by the fault, not by which program handles the data.
+  This was verified: a clean run through the injector scores within the noise
+  floor of the earlier relay-based baseline.
+- **Fault timing is anchored to `/trial/started`**, published by the trajectory
+  driver when it begins driving, not to simulator startup. The gap between
+  simulator start and trial start varies by several seconds between runs, so
+  anchoring to the trial keeps a fault landing at the same point in the path
+  every time.
+- **Ground truth is consumed only by the `scoring` package.** The estimator, the
+  fault injector, and any future detector never subscribe to it;
+  `/ground_truth/*` appears in none of their configs. Corruption depends only on
+  the incoming message and elapsed trial time, never on where the robot is.
 - **The estimator owns `odom -> base_link` alone.** The simulator's odometry TF
   broadcast is redirected to an unbridged topic so nothing competes with, or
   masks, the estimator's transform.
@@ -42,7 +51,7 @@ should not have:
 | `sim_bringup`    | robot, world, sensor bridge, EKF              | none                |
 | `scoring`        | ground-truth tap, ATE/RPE (TUM export + evo)  | yes — only here     |
 | `experiments`    | trajectory library, one-command trial runner  | none                |
-| `fault_injector` | corrupts raw sensor streams — Stage 2 stub    | none                |
+| `fault_injector` | corrupts raw sensor streams (scheduled)         | none                |
 | `fdir`           | detect / isolate / recover — Stage 3 stub     | none                |
 
 The estimator is a `robot_localization` EKF fusing wheel-odometry planar
@@ -70,44 +79,66 @@ cd ~/sensor-fault-benchmark
 colcon build --symlink-install
 source install/setup.bash
 
-# run one full trial: teardown -> launch -> record -> drive -> score
+# clean trial: teardown -> launch -> record -> drive -> score
 ./experiments/scripts/run_trial.sh experiments/trajectories/box.yaml trial01
+
+# faulted trial
+./experiments/scripts/run_trial.sh experiments/trajectories/figure_eight.yaml \
+    trial02 --imu yaw_bias:0.2
 ```
 
 `run_trial.sh` runs the whole pipeline as one command and stops if an integrity
 gate fails — the ROS graph not being empty after teardown, or the robot not being
 at the origin at spawn. It prints the ATE at the end.
 
-Available trajectories: `box.yaml` (default), `straight.yaml`,
-`figure_eight.yaml`. Each declares its own duration, which the runner reads to
-size the recording window automatically.
+Trajectories live in `experiments/trajectories/` (`box`, `straight`,
+`figure_eight`); each declares its own duration, which the runner reads to size
+the recording window. Fault types and their timing are defined in
+`experiments/faults/faults.yaml`; the command line selects which fault applies to
+which sensor and at what magnitude. A sensor with no flag runs clean.
 
-## Preliminary results (Stage 1)
+## Preliminary results
 
-Clean-run baseline, differential-drive EKF, no faults injected, using the Stage 1
-EKF configuration in the UTM environment described above. ATE is absolute
-trajectory error (translation part, unaligned); all values in metres, from five
-runs per trajectory. These figures characterise total run-to-run variance in one
+### Clean baselines
+
+No faults injected, using the Stage 1 EKF configuration in the UTM environment
+described above, with the fault injector present in the data path (passthrough
+mode). ATE is absolute trajectory error, translation part, unaligned; all values
+in metres. These figures characterise total run-to-run variance in one
 environment; they are not a decomposed error budget and have not been validated
 across machines.
 
-| trajectory     | runs | ATE RMSE (mean ± std) | spread | notes                    |
-|----------------|------|-----------------------|--------|--------------------------|
-| straight       | 5    | 0.025 ± 0.002         | 19%    | pure translation, ~2.4 m |
-| box            | 5    | 0.043 ± 0.002         | 13%    | four 90°-ish turns       |
-| figure_eight   | 5    | 0.197 ± 0.001         | 1.3%   | reversing curvature      |
+| trajectory     | runs | ATE RMSE (mean ± std) | spread |
+|----------------|------|-----------------------|--------|
+| straight       | 5    | 0.0245 ± 0.0020       | 22%    |
+| box            | 10   | 0.0408 ± 0.0029       | 25%    |
+| figure_eight   | 5    | 0.1962 ± 0.0009       | 1.0%   |
 
 Per-frame relative error (RPE) on the box baseline is about 0.0023 m/frame.
 
-**Noise floor and trajectory sensitivity.** The run-to-run standard deviation is
-roughly constant across trajectories (~0.002 m), set by physics-solver
-nondeterminism and sensor-noise seeds. Because that noise is roughly fixed in
-absolute terms, trajectories with larger accumulated error have proportionally
-*lower* relative noise: figure_eight's ~1.3% spread makes it the most sensitive
-of the three, while a fault on the straight-line run must overcome ~19% variance
-to register. This suggests figure_eight is the trajectory to lead with when
-injecting faults in Stage 2. With five runs each these spreads are estimates, but
-the ordering is consistent.
+**Trajectory sensitivity.** The run-to-run standard deviation is roughly constant
+in absolute terms across trajectories (~0.002-0.003 m), set by physics-solver
+nondeterminism and sensor-noise seeds. Because that noise floor is roughly fixed
+while accumulated error is not, trajectories with larger error have
+proportionally *lower* relative noise. figure_eight's 1.0% spread makes it about
+25x more sensitive than box's 25%: a fault must shift box ATE by roughly a
+quarter to be distinguishable from noise, but only by a percent or so on
+figure_eight. Sensitive experiments should therefore lead with figure_eight.
+
+### Fault injection
+
+A first fault type is implemented: a constant bias added to the IMU yaw-rate
+channel, active over a scheduled window. Example, on figure_eight with the fault
+starting 8 s into a 28 s run:
+
+| condition                     | ATE RMSE | vs clean |
+|-------------------------------|----------|----------|
+| clean                         | 0.196    | —        |
+| `--imu yaw_bias:0.2` from 8 s | 0.705    | 3.6x     |
+
+The degradation is far outside the 1.0% noise floor for this trajectory. An
+earlier whole-run version of the same fault produced 1.50 (7.6x), consistent
+with the scheduled fault having less time to accumulate error.
 
 ## Methodology
 
@@ -157,10 +188,13 @@ and by reversing curvature in the figure_eight case.
 
 ## Roadmap
 
-- **Stage 1 (current):** clean-run simulation, EKF, scoring, one-command trials.
-- **Stage 2:** YAML-driven fault injector (IMU drift, encoder dropout, camera
-  loss) between the raw and clean topics; a scorecard sweeping a scenario matrix;
-  Docker packaging for one-command reproduction.
+- **Stage 1 (complete):** clean-run simulation, EKF, scoring, one-command trials
+  with integrity gates, characterised noise floors.
+- **Stage 2 (in progress):** scenario-driven fault injector with scheduled
+  windows — done, with IMU yaw-rate bias as the first fault type. Remaining:
+  further fault types (dropout, freeze, drift, wheel slip), a scorecard sweeping
+  the fault × magnitude × trajectory matrix, and Docker packaging for
+  one-command reproduction.
 - **Stage 3:** innovation-based detection (NIS / chi-squared gating),
   cross-consistency isolation, and drop-and-readmit recovery, validated by
   running through the Stage 2 benchmark and kept separate from it.
