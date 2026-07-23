@@ -1,3 +1,0 @@
-[console_scripts]
-drive_trajectory = experiments.drive_trajectory:main
-

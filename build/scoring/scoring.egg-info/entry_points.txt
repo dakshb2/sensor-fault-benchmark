@@ -1,3 +1,0 @@
-[console_scripts]
-pose_to_tum = scoring.pose_to_tum:main
-
