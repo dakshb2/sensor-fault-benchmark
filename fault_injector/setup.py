@@ -24,7 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'imu_bias_injector = fault_injector.imu_bias_injector:main',
+            'injector = fault_injector.injector:main',
         ],
     },
 )

@@ -1,0 +1,22 @@
+running develop
+running egg_info
+creating scoring.egg-info
+writing scoring.egg-info/PKG-INFO
+writing dependency_links to scoring.egg-info/dependency_links.txt
+writing entry points to scoring.egg-info/entry_points.txt
+writing requirements to scoring.egg-info/requires.txt
+writing top-level names to scoring.egg-info/top_level.txt
+writing manifest file 'scoring.egg-info/SOURCES.txt'
+reading manifest file 'scoring.egg-info/SOURCES.txt'
+writing manifest file 'scoring.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/dakshb2/sensor-fault-benchmark/install/scoring/lib/python3.10/site-packages/scoring.egg-link (link to .)
+Installing pose_to_tum script to /home/dakshb2/sensor-fault-benchmark/install/scoring/lib/scoring
+
+Installed /home/dakshb2/sensor-fault-benchmark/build/scoring
+running symlink_data
+creating /home/dakshb2/sensor-fault-benchmark/install/scoring/share/ament_index
+creating /home/dakshb2/sensor-fault-benchmark/install/scoring/share/ament_index/resource_index
+creating /home/dakshb2/sensor-fault-benchmark/install/scoring/share/ament_index/resource_index/packages
+symbolically linking /home/dakshb2/sensor-fault-benchmark/build/scoring/resource/scoring -> /home/dakshb2/sensor-fault-benchmark/install/scoring/share/ament_index/resource_index/packages
+symbolically linking /home/dakshb2/sensor-fault-benchmark/build/scoring/package.xml -> /home/dakshb2/sensor-fault-benchmark/install/scoring/share/scoring

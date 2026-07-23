@@ -1,0 +1,9 @@
+source;share/scoring/hook/pythonpath.ps1
+source;share/scoring/hook/pythonpath.dsv
+source;share/scoring/hook/pythonpath.sh
+source;share/scoring/hook/ament_prefix_path.ps1
+source;share/scoring/hook/ament_prefix_path.dsv
+source;share/scoring/hook/ament_prefix_path.sh
+source;../../build/scoring/share/scoring/hook/pythonpath_develop.ps1
+source;../../build/scoring/share/scoring/hook/pythonpath_develop.dsv
+source;../../build/scoring/share/scoring/hook/pythonpath_develop.sh

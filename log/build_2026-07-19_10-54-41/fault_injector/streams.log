@@ -1,0 +1,23 @@
+[0.627s] Invoking command in '/home/dakshb2/sensor-fault-benchmark/build/fault_injector': PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/build/fault_injector/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build --no-deps symlink_data
+[0.767s] running develop
+[0.837s] running egg_info
+[0.837s] creating fault_injector.egg-info
+[0.837s] writing fault_injector.egg-info/PKG-INFO
+[0.837s] writing dependency_links to fault_injector.egg-info/dependency_links.txt
+[0.837s] writing entry points to fault_injector.egg-info/entry_points.txt
+[0.838s] writing requirements to fault_injector.egg-info/requires.txt
+[0.838s] writing top-level names to fault_injector.egg-info/top_level.txt
+[0.838s] writing manifest file 'fault_injector.egg-info/SOURCES.txt'
+[0.841s] reading manifest file 'fault_injector.egg-info/SOURCES.txt'
+[0.842s] writing manifest file 'fault_injector.egg-info/SOURCES.txt'
+[0.843s] running build_ext
+[0.844s] Creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault-injector.egg-link (link to .)
+[0.844s] 
+[0.844s] Installed /home/dakshb2/sensor-fault-benchmark/build/fault_injector
+[0.844s] running symlink_data
+[0.844s] creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index
+[0.844s] creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index/resource_index
+[0.844s] creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index/resource_index/packages
+[0.844s] symbolically linking /home/dakshb2/sensor-fault-benchmark/build/fault_injector/resource/fault_injector -> /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index/resource_index/packages
+[0.844s] symbolically linking /home/dakshb2/sensor-fault-benchmark/build/fault_injector/package.xml -> /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector
+[0.864s] Invoked command in '/home/dakshb2/sensor-fault-benchmark/build/fault_injector' returned '0': PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/build/fault_injector/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build --no-deps symlink_data

@@ -1,0 +1,13 @@
+package.xml
+setup.cfg
+setup.py
+resource/scoring
+scoring/__init__.py
+scoring/pose_to_tum.py
+scoring.egg-info/PKG-INFO
+scoring.egg-info/SOURCES.txt
+scoring.egg-info/dependency_links.txt
+scoring.egg-info/entry_points.txt
+scoring.egg-info/requires.txt
+scoring.egg-info/top_level.txt
+scoring.egg-info/zip-safe

@@ -1,0 +1,263 @@
+[0.044s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--packages-select', 'experiments', 'fault_injector', 'sim_bringup']
+[0.044s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=6, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=['experiments', 'fault_injector', 'sim_bringup'], packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffff7fefdc00>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffff800b7070>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffff800b7070>>)
+[0.109s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.109s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.109s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.109s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.109s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.109s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.109s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/dakshb2/sensor-fault-benchmark'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.125s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.125s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.125s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.125s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.125s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.125s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.126s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.126s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.126s] Level 1:colcon.colcon_core.package_identification:_identify(experiments) by extensions ['ignore', 'ignore_ament_install']
+[0.126s] Level 1:colcon.colcon_core.package_identification:_identify(experiments) by extension 'ignore'
+[0.126s] Level 1:colcon.colcon_core.package_identification:_identify(experiments) by extension 'ignore_ament_install'
+[0.126s] Level 1:colcon.colcon_core.package_identification:_identify(experiments) by extensions ['colcon_pkg']
+[0.126s] Level 1:colcon.colcon_core.package_identification:_identify(experiments) by extension 'colcon_pkg'
+[0.126s] Level 1:colcon.colcon_core.package_identification:_identify(experiments) by extensions ['colcon_meta']
+[0.126s] Level 1:colcon.colcon_core.package_identification:_identify(experiments) by extension 'colcon_meta'
+[0.126s] Level 1:colcon.colcon_core.package_identification:_identify(experiments) by extensions ['ros']
+[0.126s] Level 1:colcon.colcon_core.package_identification:_identify(experiments) by extension 'ros'
+[0.127s] DEBUG:colcon.colcon_core.package_identification:Package 'experiments' with type 'ros.ament_python' and name 'experiments'
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fault_injector) by extensions ['ignore', 'ignore_ament_install']
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fault_injector) by extension 'ignore'
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fault_injector) by extension 'ignore_ament_install'
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fault_injector) by extensions ['colcon_pkg']
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fault_injector) by extension 'colcon_pkg'
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fault_injector) by extensions ['colcon_meta']
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fault_injector) by extension 'colcon_meta'
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fault_injector) by extensions ['ros']
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fault_injector) by extension 'ros'
+[0.127s] DEBUG:colcon.colcon_core.package_identification:Package 'fault_injector' with type 'ros.ament_python' and name 'fault_injector'
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fdir) by extensions ['ignore', 'ignore_ament_install']
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fdir) by extension 'ignore'
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fdir) by extension 'ignore_ament_install'
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fdir) by extensions ['colcon_pkg']
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fdir) by extension 'colcon_pkg'
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fdir) by extensions ['colcon_meta']
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fdir) by extension 'colcon_meta'
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fdir) by extensions ['ros']
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(fdir) by extension 'ros'
+[0.128s] DEBUG:colcon.colcon_core.package_identification:Package 'fdir' with type 'ros.ament_python' and name 'fdir'
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(results) by extensions ['ignore', 'ignore_ament_install']
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(results) by extension 'ignore'
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(results) by extension 'ignore_ament_install'
+[0.128s] Level 1:colcon.colcon_core.package_identification:_identify(results) by extensions ['colcon_pkg']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(results) by extension 'colcon_pkg'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(results) by extensions ['colcon_meta']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(results) by extension 'colcon_meta'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(results) by extensions ['ros']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(results) by extension 'ros'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(results) by extensions ['cmake', 'python']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(results) by extension 'cmake'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(results) by extension 'python'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(results) by extensions ['python_setup_py']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(results) by extension 'python_setup_py'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(scoring) by extensions ['ignore', 'ignore_ament_install']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(scoring) by extension 'ignore'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(scoring) by extension 'ignore_ament_install'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(scoring) by extensions ['colcon_pkg']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(scoring) by extension 'colcon_pkg'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(scoring) by extensions ['colcon_meta']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(scoring) by extension 'colcon_meta'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(scoring) by extensions ['ros']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(scoring) by extension 'ros'
+[0.129s] DEBUG:colcon.colcon_core.package_identification:Package 'scoring' with type 'ros.ament_python' and name 'scoring'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(sim_bringup) by extensions ['ignore', 'ignore_ament_install']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(sim_bringup) by extension 'ignore'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(sim_bringup) by extension 'ignore_ament_install'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(sim_bringup) by extensions ['colcon_pkg']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(sim_bringup) by extension 'colcon_pkg'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(sim_bringup) by extensions ['colcon_meta']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(sim_bringup) by extension 'colcon_meta'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(sim_bringup) by extensions ['ros']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(sim_bringup) by extension 'ros'
+[0.129s] DEBUG:colcon.colcon_core.package_identification:Package 'sim_bringup' with type 'ros.ament_cmake' and name 'sim_bringup'
+[0.129s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.130s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.130s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.130s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.130s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.138s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'fdir' in 'fdir'
+[0.138s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'scoring' in 'scoring'
+[0.138s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.138s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.139s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 3 installed packages in /home/dakshb2/ros2_ws/install
+[0.139s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 334 installed packages in /opt/ros/humble
+[0.140s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'experiments' build argument 'cmake_args' from command line to 'None'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'experiments' build argument 'cmake_target' from command line to 'None'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'experiments' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'experiments' build argument 'cmake_clean_cache' from command line to 'False'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'experiments' build argument 'cmake_clean_first' from command line to 'False'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'experiments' build argument 'cmake_force_configure' from command line to 'False'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'experiments' build argument 'ament_cmake_args' from command line to 'None'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'experiments' build argument 'catkin_cmake_args' from command line to 'None'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'experiments' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.158s] DEBUG:colcon.colcon_core.verb:Building package 'experiments' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/dakshb2/sensor-fault-benchmark/build/experiments', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/dakshb2/sensor-fault-benchmark/install/experiments', 'merge_install': False, 'path': '/home/dakshb2/sensor-fault-benchmark/experiments', 'symlink_install': False, 'test_result_base': None}
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'fault_injector' build argument 'cmake_args' from command line to 'None'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'fault_injector' build argument 'cmake_target' from command line to 'None'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'fault_injector' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'fault_injector' build argument 'cmake_clean_cache' from command line to 'False'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'fault_injector' build argument 'cmake_clean_first' from command line to 'False'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'fault_injector' build argument 'cmake_force_configure' from command line to 'False'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'fault_injector' build argument 'ament_cmake_args' from command line to 'None'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'fault_injector' build argument 'catkin_cmake_args' from command line to 'None'
+[0.158s] Level 5:colcon.colcon_core.verb:set package 'fault_injector' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.158s] DEBUG:colcon.colcon_core.verb:Building package 'fault_injector' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/dakshb2/sensor-fault-benchmark/build/fault_injector', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/dakshb2/sensor-fault-benchmark/install/fault_injector', 'merge_install': False, 'path': '/home/dakshb2/sensor-fault-benchmark/fault_injector', 'symlink_install': False, 'test_result_base': None}
+[0.159s] Level 5:colcon.colcon_core.verb:set package 'sim_bringup' build argument 'cmake_args' from command line to 'None'
+[0.159s] Level 5:colcon.colcon_core.verb:set package 'sim_bringup' build argument 'cmake_target' from command line to 'None'
+[0.159s] Level 5:colcon.colcon_core.verb:set package 'sim_bringup' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.159s] Level 5:colcon.colcon_core.verb:set package 'sim_bringup' build argument 'cmake_clean_cache' from command line to 'False'
+[0.159s] Level 5:colcon.colcon_core.verb:set package 'sim_bringup' build argument 'cmake_clean_first' from command line to 'False'
+[0.159s] Level 5:colcon.colcon_core.verb:set package 'sim_bringup' build argument 'cmake_force_configure' from command line to 'False'
+[0.159s] Level 5:colcon.colcon_core.verb:set package 'sim_bringup' build argument 'ament_cmake_args' from command line to 'None'
+[0.159s] Level 5:colcon.colcon_core.verb:set package 'sim_bringup' build argument 'catkin_cmake_args' from command line to 'None'
+[0.159s] Level 5:colcon.colcon_core.verb:set package 'sim_bringup' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.159s] DEBUG:colcon.colcon_core.verb:Building package 'sim_bringup' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/dakshb2/sensor-fault-benchmark/build/sim_bringup', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup', 'merge_install': False, 'path': '/home/dakshb2/sensor-fault-benchmark/sim_bringup', 'symlink_install': False, 'test_result_base': None}
+[0.159s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.159s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.159s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/dakshb2/sensor-fault-benchmark/experiments' with build type 'ament_python'
+[0.159s] Level 1:colcon.colcon_core.shell:create_environment_hook('experiments', 'ament_prefix_path')
+[0.161s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.161s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/hook/ament_prefix_path.ps1'
+[0.161s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/hook/ament_prefix_path.dsv'
+[0.161s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/hook/ament_prefix_path.sh'
+[0.162s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.162s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.163s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/dakshb2/sensor-fault-benchmark/fault_injector' with build type 'ament_python'
+[0.163s] Level 1:colcon.colcon_core.shell:create_environment_hook('fault_injector', 'ament_prefix_path')
+[0.163s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector/hook/ament_prefix_path.ps1'
+[0.164s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector/hook/ament_prefix_path.dsv'
+[0.164s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector/hook/ament_prefix_path.sh'
+[0.165s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.165s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.272s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/dakshb2/sensor-fault-benchmark/experiments'
+[0.272s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.272s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.378s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/dakshb2/sensor-fault-benchmark/fault_injector'
+[0.378s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.378s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.534s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/dakshb2/sensor-fault-benchmark/experiments': PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/build/experiments/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dakshb2/sensor-fault-benchmark/install/experiments/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/experiments build --build-base /home/dakshb2/sensor-fault-benchmark/build/experiments/build install --record /home/dakshb2/sensor-fault-benchmark/build/experiments/install.log --single-version-externally-managed install_data
+[0.534s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/dakshb2/sensor-fault-benchmark/fault_injector': PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/build/fault_injector/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/fault_injector build --build-base /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build install --record /home/dakshb2/sensor-fault-benchmark/build/fault_injector/install.log --single-version-externally-managed install_data
+[0.661s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/dakshb2/sensor-fault-benchmark/experiments' returned '0': PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/build/experiments/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dakshb2/sensor-fault-benchmark/install/experiments/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/experiments build --build-base /home/dakshb2/sensor-fault-benchmark/build/experiments/build install --record /home/dakshb2/sensor-fault-benchmark/build/experiments/install.log --single-version-externally-managed install_data
+[0.662s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/experiments' for CMake module files
+[0.662s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/experiments' for CMake config files
+[0.662s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/experiments/lib'
+[0.662s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/experiments/bin'
+[0.662s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/experiments/lib/pkgconfig/experiments.pc'
+[0.663s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/experiments/lib/python3.10/site-packages'
+[0.663s] Level 1:colcon.colcon_core.shell:create_environment_hook('experiments', 'pythonpath')
+[0.663s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/hook/pythonpath.ps1'
+[0.663s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/hook/pythonpath.dsv'
+[0.663s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/hook/pythonpath.sh'
+[0.664s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/experiments/bin'
+[0.664s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(experiments)
+[0.664s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/package.ps1'
+[0.665s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/package.dsv'
+[0.665s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/package.sh'
+[0.665s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/package.bash'
+[0.666s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/package.zsh'
+[0.666s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/dakshb2/sensor-fault-benchmark/install/experiments/share/colcon-core/packages/experiments)
+[0.667s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/fault_injector' for CMake module files
+[0.667s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/fault_injector' for CMake config files
+[0.668s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/dakshb2/sensor-fault-benchmark/fault_injector' returned '0': PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/build/fault_injector/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/fault_injector build --build-base /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build install --record /home/dakshb2/sensor-fault-benchmark/build/fault_injector/install.log --single-version-externally-managed install_data
+[0.668s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib'
+[0.668s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/bin'
+[0.668s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/pkgconfig/fault_injector.pc'
+[0.668s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages'
+[0.668s] Level 1:colcon.colcon_core.shell:create_environment_hook('fault_injector', 'pythonpath')
+[0.668s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector/hook/pythonpath.ps1'
+[0.668s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector/hook/pythonpath.dsv'
+[0.669s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector/hook/pythonpath.sh'
+[0.669s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/bin'
+[0.669s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(fault_injector)
+[0.669s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector/package.ps1'
+[0.669s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector/package.dsv'
+[0.669s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector/package.sh'
+[0.670s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector/package.bash'
+[0.670s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector/package.zsh'
+[0.670s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/colcon-core/packages/fault_injector)
+[0.670s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/dakshb2/sensor-fault-benchmark/sim_bringup' with build type 'ament_cmake'
+[0.670s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/dakshb2/sensor-fault-benchmark/sim_bringup'
+[0.670s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.670s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.676s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/dakshb2/sensor-fault-benchmark/build/sim_bringup': AMENT_PREFIX_PATH=/home/dakshb2/sensor-fault-benchmark/install/fault_injector:/home/dakshb2/sensor-fault-benchmark/install/experiments:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/dakshb2/ros2_ws/install/my_robot_description:/home/dakshb2/ros2_ws/install/my_robot_controller:/home/dakshb2/ros2_ws/install/diff_robot:/opt/ros/humble PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages:/home/dakshb2/sensor-fault-benchmark/install/experiments/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake /home/dakshb2/sensor-fault-benchmark/sim_bringup -DCMAKE_INSTALL_PREFIX=/home/dakshb2/sensor-fault-benchmark/install/sim_bringup
+[0.824s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/dakshb2/sensor-fault-benchmark/build/sim_bringup' returned '0': AMENT_PREFIX_PATH=/home/dakshb2/sensor-fault-benchmark/install/fault_injector:/home/dakshb2/sensor-fault-benchmark/install/experiments:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/dakshb2/ros2_ws/install/my_robot_description:/home/dakshb2/ros2_ws/install/my_robot_controller:/home/dakshb2/ros2_ws/install/diff_robot:/opt/ros/humble PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages:/home/dakshb2/sensor-fault-benchmark/install/experiments/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake /home/dakshb2/sensor-fault-benchmark/sim_bringup -DCMAKE_INSTALL_PREFIX=/home/dakshb2/sensor-fault-benchmark/install/sim_bringup
+[0.825s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/dakshb2/sensor-fault-benchmark/build/sim_bringup': AMENT_PREFIX_PATH=/home/dakshb2/sensor-fault-benchmark/install/fault_injector:/home/dakshb2/sensor-fault-benchmark/install/experiments:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/dakshb2/ros2_ws/install/my_robot_description:/home/dakshb2/ros2_ws/install/my_robot_controller:/home/dakshb2/ros2_ws/install/diff_robot:/opt/ros/humble PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages:/home/dakshb2/sensor-fault-benchmark/install/experiments/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/dakshb2/sensor-fault-benchmark/build/sim_bringup -- -j6 -l6
+[0.839s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/dakshb2/sensor-fault-benchmark/build/sim_bringup' returned '0': AMENT_PREFIX_PATH=/home/dakshb2/sensor-fault-benchmark/install/fault_injector:/home/dakshb2/sensor-fault-benchmark/install/experiments:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/dakshb2/ros2_ws/install/my_robot_description:/home/dakshb2/ros2_ws/install/my_robot_controller:/home/dakshb2/ros2_ws/install/diff_robot:/opt/ros/humble PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages:/home/dakshb2/sensor-fault-benchmark/install/experiments/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/dakshb2/sensor-fault-benchmark/build/sim_bringup -- -j6 -l6
+[0.844s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/dakshb2/sensor-fault-benchmark/build/sim_bringup': AMENT_PREFIX_PATH=/home/dakshb2/sensor-fault-benchmark/install/fault_injector:/home/dakshb2/sensor-fault-benchmark/install/experiments:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/dakshb2/ros2_ws/install/my_robot_description:/home/dakshb2/ros2_ws/install/my_robot_controller:/home/dakshb2/ros2_ws/install/diff_robot:/opt/ros/humble PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages:/home/dakshb2/sensor-fault-benchmark/install/experiments/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/dakshb2/sensor-fault-benchmark/build/sim_bringup
+[0.852s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(sim_bringup)
+[0.852s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup' for CMake module files
+[0.852s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/dakshb2/sensor-fault-benchmark/build/sim_bringup' returned '0': AMENT_PREFIX_PATH=/home/dakshb2/sensor-fault-benchmark/install/fault_injector:/home/dakshb2/sensor-fault-benchmark/install/experiments:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/dakshb2/ros2_ws/install/my_robot_description:/home/dakshb2/ros2_ws/install/my_robot_controller:/home/dakshb2/ros2_ws/install/diff_robot:/opt/ros/humble PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages:/home/dakshb2/sensor-fault-benchmark/install/experiments/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/dakshb2/sensor-fault-benchmark/build/sim_bringup
+[0.853s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup' for CMake config files
+[0.853s] Level 1:colcon.colcon_core.shell:create_environment_hook('sim_bringup', 'cmake_prefix_path')
+[0.853s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/hook/cmake_prefix_path.ps1'
+[0.853s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/hook/cmake_prefix_path.dsv'
+[0.853s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/hook/cmake_prefix_path.sh'
+[0.854s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/bin'
+[0.854s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/lib/pkgconfig/sim_bringup.pc'
+[0.854s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/lib/python3.10/site-packages'
+[0.854s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/bin'
+[0.854s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/package.ps1'
+[0.854s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/package.dsv'
+[0.855s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/package.sh'
+[0.855s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/package.bash'
+[0.855s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/package.zsh'
+[0.855s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/colcon-core/packages/sim_bringup)
+[0.856s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(sim_bringup)
+[0.856s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup' for CMake module files
+[0.856s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup' for CMake config files
+[0.856s] Level 1:colcon.colcon_core.shell:create_environment_hook('sim_bringup', 'cmake_prefix_path')
+[0.857s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/hook/cmake_prefix_path.ps1'
+[0.857s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/hook/cmake_prefix_path.dsv'
+[0.857s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/hook/cmake_prefix_path.sh'
+[0.857s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/bin'
+[0.857s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/lib/pkgconfig/sim_bringup.pc'
+[0.857s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/lib/python3.10/site-packages'
+[0.857s] Level 1:colcon.colcon_core.environment:checking '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/bin'
+[0.858s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/package.ps1'
+[0.858s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/package.dsv'
+[0.858s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/package.sh'
+[0.858s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/package.bash'
+[0.858s] INFO:colcon.colcon_core.shell:Creating package script '/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/sim_bringup/package.zsh'
+[0.859s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/dakshb2/sensor-fault-benchmark/install/sim_bringup/share/colcon-core/packages/sim_bringup)
+[0.859s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[0.859s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[0.859s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[0.859s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[0.862s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[0.862s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[0.862s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[0.867s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[0.867s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/dakshb2/sensor-fault-benchmark/install/local_setup.ps1'
+[0.867s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/dakshb2/sensor-fault-benchmark/install/_local_setup_util_ps1.py'
+[0.868s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/dakshb2/sensor-fault-benchmark/install/setup.ps1'
+[0.869s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/dakshb2/sensor-fault-benchmark/install/local_setup.sh'
+[0.869s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/dakshb2/sensor-fault-benchmark/install/_local_setup_util_sh.py'
+[0.869s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/dakshb2/sensor-fault-benchmark/install/setup.sh'
+[0.870s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/dakshb2/sensor-fault-benchmark/install/local_setup.bash'
+[0.870s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/dakshb2/sensor-fault-benchmark/install/setup.bash'
+[0.871s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/dakshb2/sensor-fault-benchmark/install/local_setup.zsh'
+[0.871s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/dakshb2/sensor-fault-benchmark/install/setup.zsh'

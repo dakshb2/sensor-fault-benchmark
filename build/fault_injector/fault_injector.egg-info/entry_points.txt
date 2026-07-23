@@ -1,0 +1,3 @@
+[console_scripts]
+injector = fault_injector.injector:main
+

@@ -1,0 +1,21 @@
+running develop
+running egg_info
+creating fdir.egg-info
+writing fdir.egg-info/PKG-INFO
+writing dependency_links to fdir.egg-info/dependency_links.txt
+writing entry points to fdir.egg-info/entry_points.txt
+writing requirements to fdir.egg-info/requires.txt
+writing top-level names to fdir.egg-info/top_level.txt
+writing manifest file 'fdir.egg-info/SOURCES.txt'
+reading manifest file 'fdir.egg-info/SOURCES.txt'
+writing manifest file 'fdir.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/dakshb2/sensor-fault-benchmark/install/fdir/lib/python3.10/site-packages/fdir.egg-link (link to .)
+
+Installed /home/dakshb2/sensor-fault-benchmark/build/fdir
+running symlink_data
+creating /home/dakshb2/sensor-fault-benchmark/install/fdir/share/ament_index
+creating /home/dakshb2/sensor-fault-benchmark/install/fdir/share/ament_index/resource_index
+creating /home/dakshb2/sensor-fault-benchmark/install/fdir/share/ament_index/resource_index/packages
+symbolically linking /home/dakshb2/sensor-fault-benchmark/build/fdir/resource/fdir -> /home/dakshb2/sensor-fault-benchmark/install/fdir/share/ament_index/resource_index/packages
+symbolically linking /home/dakshb2/sensor-fault-benchmark/build/fdir/package.xml -> /home/dakshb2/sensor-fault-benchmark/install/fdir/share/fdir

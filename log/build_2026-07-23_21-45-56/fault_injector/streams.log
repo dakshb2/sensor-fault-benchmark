@@ -1,0 +1,37 @@
+[0.261s] Invoking command in '/home/dakshb2/sensor-fault-benchmark/fault_injector': PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/build/fault_injector/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/fault_injector build --build-base /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build install --record /home/dakshb2/sensor-fault-benchmark/build/fault_injector/install.log --single-version-externally-managed install_data
+[0.360s] running egg_info
+[0.360s] creating ../build/fault_injector/fault_injector.egg-info
+[0.360s] writing ../build/fault_injector/fault_injector.egg-info/PKG-INFO
+[0.360s] writing dependency_links to ../build/fault_injector/fault_injector.egg-info/dependency_links.txt
+[0.360s] writing entry points to ../build/fault_injector/fault_injector.egg-info/entry_points.txt
+[0.360s] writing requirements to ../build/fault_injector/fault_injector.egg-info/requires.txt
+[0.360s] writing top-level names to ../build/fault_injector/fault_injector.egg-info/top_level.txt
+[0.360s] writing manifest file '../build/fault_injector/fault_injector.egg-info/SOURCES.txt'
+[0.361s] reading manifest file '../build/fault_injector/fault_injector.egg-info/SOURCES.txt'
+[0.362s] writing manifest file '../build/fault_injector/fault_injector.egg-info/SOURCES.txt'
+[0.362s] running build
+[0.362s] running build_py
+[0.362s] creating /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build
+[0.362s] creating /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build/lib
+[0.362s] creating /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build/lib/fault_injector
+[0.362s] copying fault_injector/__init__.py -> /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build/lib/fault_injector
+[0.362s] copying fault_injector/injector.py -> /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build/lib/fault_injector
+[0.362s] running install
+[0.362s] running install_lib
+[0.363s] creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector
+[0.363s] copying /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build/lib/fault_injector/__init__.py -> /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector
+[0.363s] copying /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build/lib/fault_injector/injector.py -> /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector
+[0.363s] byte-compiling /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector/__init__.py to __init__.cpython-310.pyc
+[0.363s] byte-compiling /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector/injector.py to injector.cpython-310.pyc
+[0.364s] running install_data
+[0.364s] creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index
+[0.364s] creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index/resource_index
+[0.364s] creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index/resource_index/packages
+[0.364s] copying resource/fault_injector -> /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index/resource_index/packages
+[0.364s] copying package.xml -> /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector
+[0.364s] running install_egg_info
+[0.365s] Copying ../build/fault_injector/fault_injector.egg-info to /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector-0.0.0-py3.10.egg-info
+[0.365s] running install_scripts
+[0.373s] Installing injector script to /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/fault_injector
+[0.374s] writing list of installed files to '/home/dakshb2/sensor-fault-benchmark/build/fault_injector/install.log'
+[0.384s] Invoked command in '/home/dakshb2/sensor-fault-benchmark/fault_injector' returned '0': PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/build/fault_injector/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/fault_injector build --build-base /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build install --record /home/dakshb2/sensor-fault-benchmark/build/fault_injector/install.log --single-version-externally-managed install_data

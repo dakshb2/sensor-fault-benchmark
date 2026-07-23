@@ -1,0 +1,44 @@
+[0.020s] Invoking command in '/home/dakshb2/sensor-fault-benchmark/build/experiments': CMAKE_PREFIX_PATH=/home/dakshb2/ros2_ws/install/my_robot_description:/home/dakshb2/ros2_ws/install/my_robot_controller:/home/dakshb2/ros2_ws/install/diff_robot:/opt/ros/humble /usr/bin/cmake /home/dakshb2/sensor-fault-benchmark/experiments -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/dakshb2/sensor-fault-benchmark/install/experiments
+[0.431s] -- The C compiler identification is GNU 11.4.0
+[0.431s] -- The CXX compiler identification is GNU 11.4.0
+[0.431s] -- Detecting C compiler ABI info
+[0.431s] -- Detecting C compiler ABI info - done
+[0.431s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.431s] -- Detecting C compile features
+[0.431s] -- Detecting C compile features - done
+[0.431s] -- Detecting CXX compiler ABI info
+[0.431s] -- Detecting CXX compiler ABI info - done
+[0.431s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.432s] -- Detecting CXX compile features
+[0.432s] -- Detecting CXX compile features - done
+[0.432s] -- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.433s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.433s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.433s] -- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.433s] -- Added test 'lint_cmake' to check CMake code style
+[0.433s] -- Added test 'xmllint' to check XML markup files
+[0.434s] -- Configuring done
+[0.434s] -- Generating done
+[0.435s] -- Build files have been written to: /home/dakshb2/sensor-fault-benchmark/build/experiments
+[0.437s] Invoked command in '/home/dakshb2/sensor-fault-benchmark/build/experiments' returned '0': CMAKE_PREFIX_PATH=/home/dakshb2/ros2_ws/install/my_robot_description:/home/dakshb2/ros2_ws/install/my_robot_controller:/home/dakshb2/ros2_ws/install/diff_robot:/opt/ros/humble /usr/bin/cmake /home/dakshb2/sensor-fault-benchmark/experiments -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/dakshb2/sensor-fault-benchmark/install/experiments
+[0.438s] Invoking command in '/home/dakshb2/sensor-fault-benchmark/build/experiments': CMAKE_PREFIX_PATH=/home/dakshb2/ros2_ws/install/my_robot_description:/home/dakshb2/ros2_ws/install/my_robot_controller:/home/dakshb2/ros2_ws/install/diff_robot:/opt/ros/humble /usr/bin/cmake --build /home/dakshb2/sensor-fault-benchmark/build/experiments -- -j6 -l6
+[0.462s] Invoked command in '/home/dakshb2/sensor-fault-benchmark/build/experiments' returned '0': CMAKE_PREFIX_PATH=/home/dakshb2/ros2_ws/install/my_robot_description:/home/dakshb2/ros2_ws/install/my_robot_controller:/home/dakshb2/ros2_ws/install/diff_robot:/opt/ros/humble /usr/bin/cmake --build /home/dakshb2/sensor-fault-benchmark/build/experiments -- -j6 -l6
+[0.466s] Invoking command in '/home/dakshb2/sensor-fault-benchmark/build/experiments': CMAKE_PREFIX_PATH=/home/dakshb2/ros2_ws/install/my_robot_description:/home/dakshb2/ros2_ws/install/my_robot_controller:/home/dakshb2/ros2_ws/install/diff_robot:/opt/ros/humble /usr/bin/cmake --install /home/dakshb2/sensor-fault-benchmark/build/experiments
+[0.470s] -- Install configuration: ""
+[0.470s] -- Execute custom install script
+[0.470s] -- Symlinking: /home/dakshb2/sensor-fault-benchmark/install/experiments/share/ament_index/resource_index/package_run_dependencies/experiments
+[0.473s] -- Symlinking: /home/dakshb2/sensor-fault-benchmark/install/experiments/share/ament_index/resource_index/parent_prefix_path/experiments
+[0.477s] -- Symlinking: /home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/environment/ament_prefix_path.sh
+[0.481s] -- Symlinking: /home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/environment/ament_prefix_path.dsv
+[0.486s] -- Symlinking: /home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/environment/path.sh
+[0.488s] -- Symlinking: /home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/environment/path.dsv
+[0.495s] -- Symlinking: /home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/local_setup.bash
+[0.495s] -- Symlinking: /home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/local_setup.sh
+[0.499s] -- Symlinking: /home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/local_setup.zsh
+[0.502s] -- Symlinking: /home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/local_setup.dsv
+[0.506s] -- Symlinking: /home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/package.dsv
+[0.509s] -- Symlinking: /home/dakshb2/sensor-fault-benchmark/install/experiments/share/ament_index/resource_index/packages/experiments
+[0.516s] -- Symlinking: /home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/cmake/experimentsConfig.cmake
+[0.522s] -- Symlinking: /home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/cmake/experimentsConfig-version.cmake
+[0.531s] -- Symlinking: /home/dakshb2/sensor-fault-benchmark/install/experiments/share/experiments/package.xml
+[0.541s] Invoked command in '/home/dakshb2/sensor-fault-benchmark/build/experiments' returned '0': CMAKE_PREFIX_PATH=/home/dakshb2/ros2_ws/install/my_robot_description:/home/dakshb2/ros2_ws/install/my_robot_controller:/home/dakshb2/ros2_ws/install/diff_robot:/opt/ros/humble /usr/bin/cmake --install /home/dakshb2/sensor-fault-benchmark/build/experiments

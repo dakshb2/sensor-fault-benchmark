@@ -1,0 +1,21 @@
+running develop
+running egg_info
+creating fault_injector.egg-info
+writing fault_injector.egg-info/PKG-INFO
+writing dependency_links to fault_injector.egg-info/dependency_links.txt
+writing entry points to fault_injector.egg-info/entry_points.txt
+writing requirements to fault_injector.egg-info/requires.txt
+writing top-level names to fault_injector.egg-info/top_level.txt
+writing manifest file 'fault_injector.egg-info/SOURCES.txt'
+reading manifest file 'fault_injector.egg-info/SOURCES.txt'
+writing manifest file 'fault_injector.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault-injector.egg-link (link to .)
+
+Installed /home/dakshb2/sensor-fault-benchmark/build/fault_injector
+running symlink_data
+creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index
+creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index/resource_index
+creating /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index/resource_index/packages
+symbolically linking /home/dakshb2/sensor-fault-benchmark/build/fault_injector/resource/fault_injector -> /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/ament_index/resource_index/packages
+symbolically linking /home/dakshb2/sensor-fault-benchmark/build/fault_injector/package.xml -> /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector

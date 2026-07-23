@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # One-command benchmark trial.
-#   ./run_trial.sh <trajectory.yaml> <output_prefix> [fault_type] [imu_yaw_bias]
+#   ./run_trial.sh <trajectory.yaml> <output_prefix> [--imu <fault>] [--wheel <fault>]
 # Runs teardown -> launch -> origin check -> record -> drive -> score -> teardown,
 # refusing to proceed if any integrity gate fails.
 
@@ -18,8 +18,16 @@ set -eo pipefail
 TRAJ="${1:?usage: run_trial.sh <trajectory.yaml> <output_prefix>}"
 PREFIX="${2:?usage: run_trial.sh <trajectory.yaml> <output_prefix>}"
 
-FAULT_TYPE="${3:-none}"
-IMU_YAW_BIAS="${4:-0.0}"
+IMU_FAULT=""
+WHEEL_FAULT=""
+shift 2 || true
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --imu)   IMU_FAULT="$2";   shift 2 ;;
+    --wheel) WHEEL_FAULT="$2"; shift 2 ;;
+    *) echo "Unknown option: $1"; exit 1 ;;
+  esac
+done
 
 EST="$WS/results/${PREFIX}_est.tum"
 REF="$WS/results/${PREFIX}_ref.tum"
@@ -32,6 +40,7 @@ teardown() {
   pkill -9 -f parameter_bridge    2>/dev/null || true
   pkill -9 -f robot_state_publisher 2>/dev/null || true
   pkill -9 -f ekf_node            2>/dev/null || true
+  pkill -9 -f "fault_injector"    2>/dev/null || true
   pkill -9 -f "topic_tools/relay" 2>/dev/null || true
   pkill -9 -f pose_to_tum         2>/dev/null || true
   pkill -9 -f drive_trajectory    2>/dev/null || true
@@ -67,12 +76,14 @@ d = yaml.safe_load(open('$TRAJ'))
 print(sum(float(s['duration']) for s in d['segments']) + 4.0)
 ")
 echo "[2/7] Trajectory '$TRAJ' -> record window ${DURATION}s (segments + 4s margin)."
-echo "       fault: $FAULT_TYPE (imu_yaw_bias=$IMU_YAW_BIAS)"
+echo "       faults: imu='${IMU_FAULT:-none}' wheel='${WHEEL_FAULT:-none}'"
 
 # --- 3. launch bringup in background ---
 echo "[3/7] Launching sim."
-ros2 launch sim_bringup bringup.launch.py \
-  fault_type:="$FAULT_TYPE" imu_yaw_bias:="$IMU_YAW_BIAS" \
+LAUNCH_ARGS=()
+[ -n "$IMU_FAULT" ]   && LAUNCH_ARGS+=("imu_fault:=$IMU_FAULT")
+[ -n "$WHEEL_FAULT" ] && LAUNCH_ARGS+=("wheel_fault:=$WHEEL_FAULT")
+ros2 launch sim_bringup bringup.launch.py "${LAUNCH_ARGS[@]+"${LAUNCH_ARGS[@]}"}" \
   > /tmp/bringup.log 2>&1 &
 
 # --- 4. wait for the graph to come up ---

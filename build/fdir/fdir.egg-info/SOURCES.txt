@@ -1,0 +1,12 @@
+package.xml
+setup.cfg
+setup.py
+fdir/__init__.py
+fdir.egg-info/PKG-INFO
+fdir.egg-info/SOURCES.txt
+fdir.egg-info/dependency_links.txt
+fdir.egg-info/entry_points.txt
+fdir.egg-info/requires.txt
+fdir.egg-info/top_level.txt
+fdir.egg-info/zip-safe
+resource/fdir

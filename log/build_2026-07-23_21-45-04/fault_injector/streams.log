@@ -1,0 +1,28 @@
+[0.259s] Invoking command in '/home/dakshb2/sensor-fault-benchmark/fault_injector': PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/build/fault_injector/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/fault_injector build --build-base /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build install --record /home/dakshb2/sensor-fault-benchmark/build/fault_injector/install.log --single-version-externally-managed install_data
+[0.353s] running egg_info
+[0.354s] writing ../build/fault_injector/fault_injector.egg-info/PKG-INFO
+[0.354s] writing dependency_links to ../build/fault_injector/fault_injector.egg-info/dependency_links.txt
+[0.354s] writing entry points to ../build/fault_injector/fault_injector.egg-info/entry_points.txt
+[0.354s] writing requirements to ../build/fault_injector/fault_injector.egg-info/requires.txt
+[0.354s] writing top-level names to ../build/fault_injector/fault_injector.egg-info/top_level.txt
+[0.355s] reading manifest file '../build/fault_injector/fault_injector.egg-info/SOURCES.txt'
+[0.356s] writing manifest file '../build/fault_injector/fault_injector.egg-info/SOURCES.txt'
+[0.356s] running build
+[0.356s] running build_py
+[0.356s] copying fault_injector/imu_bias_injector.py -> /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build/lib/fault_injector
+[0.356s] copying fault_injector/injector.py -> /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build/lib/fault_injector
+[0.356s] running install
+[0.356s] running install_lib
+[0.357s] copying /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build/lib/fault_injector/imu_bias_injector.py -> /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector
+[0.357s] copying /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build/lib/fault_injector/injector.py -> /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector
+[0.357s] byte-compiling /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector/imu_bias_injector.py to imu_bias_injector.cpython-310.pyc
+[0.357s] byte-compiling /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector/injector.py to injector.cpython-310.pyc
+[0.358s] running install_data
+[0.358s] copying package.xml -> /home/dakshb2/sensor-fault-benchmark/install/fault_injector/share/fault_injector
+[0.358s] running install_egg_info
+[0.359s] removing '/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector-0.0.0-py3.10.egg-info' (and everything under it)
+[0.359s] Copying ../build/fault_injector/fault_injector.egg-info to /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages/fault_injector-0.0.0-py3.10.egg-info
+[0.360s] running install_scripts
+[0.368s] Installing injector script to /home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/fault_injector
+[0.368s] writing list of installed files to '/home/dakshb2/sensor-fault-benchmark/build/fault_injector/install.log'
+[0.379s] Invoked command in '/home/dakshb2/sensor-fault-benchmark/fault_injector' returned '0': PYTHONPATH=/home/dakshb2/sensor-fault-benchmark/build/fault_injector/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dakshb2/sensor-fault-benchmark/install/fault_injector/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/fault_injector build --build-base /home/dakshb2/sensor-fault-benchmark/build/fault_injector/build install --record /home/dakshb2/sensor-fault-benchmark/build/fault_injector/install.log --single-version-externally-managed install_data

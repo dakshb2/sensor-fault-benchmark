@@ -1,0 +1,5 @@
+name: figure_eight
+description: Alternating-curvature loops. Stresses heading estimation both ways.
+segments:
+  - {linear_x: 0.25, angular_z: 0.5,  duration: 12.0}
+  - {linear_x: 0.25, angular_z: -0.5, duration: 12.0}
