@@ -58,6 +58,12 @@ class FaultSpec:
     def __repr__(self):
         return (f'{self.sensor}:{self.fault_type} '
                 f'magnitude={self.magnitude} {self.window_text()}')
+    
+    def elapsed_since_start(self, elapsed):
+        """Seconds since this fault activated, or 0 if not yet active."""
+        if elapsed is None or elapsed < self.start:
+            return 0.0
+        return elapsed - self.start
 
 
 class FaultInjector(Node):
@@ -253,11 +259,16 @@ class FaultInjector(Node):
     # ---------- message handling ----------
 
     def _on_imu(self, msg):
-        if self._should_apply(self._imu_fault):
-            fault = self._imu_fault
+        fault = self._imu_fault
+        if self._should_apply(fault):
             if fault.fault_type == 'yaw_bias':
-                msg.angular_velocity.z = (
-                    msg.angular_velocity.z + fault.magnitude)
+                # constant offset
+                msg.angular_velocity.z += fault.magnitude
+            elif fault.fault_type == 'drift':
+                # bias that grows with time: magnitude is rad/s per second,
+                # so the offset at time t into the fault is magnitude * t.
+                t = fault.elapsed_since_start(self._elapsed())
+                msg.angular_velocity.z += fault.magnitude * t
         self._imu_publisher.publish(msg)
 
     def _on_wheel(self, msg):

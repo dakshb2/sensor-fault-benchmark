@@ -24,6 +24,12 @@ imu:
     default_magnitude: 0.1
     start: 8.0
     duration: null
+  
+  drift:
+    description: Yaw-rate bias that grows linearly with time (rad/s per second).
+    default_magnitude: 0.02
+    start: 8.0
+    duration: null
 
 wheel:
   topic_raw: /wheel/odometry/raw
