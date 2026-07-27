@@ -279,12 +279,13 @@ class FaultInjector(Node):
             if fault.fault_type == 'freeze':
                 if self._last_wheel_msg is not None:
                     frozen = self._last_wheel_msg
-                    # re-stamp so the message looks current: a hung sensor
-                    # keeps emitting fresh timestamps carrying stale data.
                     frozen.header.stamp = self.get_clock().now().to_msg()
                     self._wheel_publisher.publish(frozen)
                 return
-        # normal passthrough — also remember this as the last good message
+            if fault.fault_type == 'slip':
+                # scale reported forward velocity by the factor.
+                # <1 under-reports (dragging wheel), >1 over-reports (spin slip).
+                msg.twist.twist.linear.x *= fault.magnitude
         self._last_wheel_msg = msg
         self._wheel_publisher.publish(msg)
 

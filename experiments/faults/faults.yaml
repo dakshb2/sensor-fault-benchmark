@@ -46,3 +46,9 @@ wheel:
     default_magnitude: null
     start: 12.0
     duration: 15.0
+  
+  slip:
+    description: Scale reported forward velocity by a factor (<1 under, >1 over).
+    default_magnitude: 0.5
+    start: 12.0
+    duration: null
