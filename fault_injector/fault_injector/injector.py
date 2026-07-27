@@ -78,6 +78,7 @@ class FaultInjector(Node):
             self._definitions = yaml.safe_load(handle)
 
         self._trial_start = None      # sim time when /trial/started arrived
+        self._last_wheel_msg = None   # for wheel freeze fault
         self._warned_no_start = False
 
         self._imu_fault = self._parse_fault(
@@ -118,13 +119,27 @@ class FaultInjector(Node):
     # ---------- setup helpers ----------
 
     def _parse_fault(self, sensor, spec):
-        """Turn 'yaw_bias:0.2' (or 'dropout') into a FaultSpec, or None."""
+        """Parse a fault spec string into a FaultSpec, or None if empty.
+
+        Grammar:  <type>[:<magnitude>][@<start>[:<duration>]]
+        Examples:
+            dropout                 type only; magnitude + timing from file
+            yaw_bias:0.2            magnitude 0.2; timing from file
+            freeze@12:15            timing start 12s, duration 15s
+            yaw_bias:0.2@8:10       magnitude 0.2, start 8s, duration 10s
+            drift:0.01@4            magnitude 0.01, start 4s, duration from file
+
+        Splitting on '@' first keeps the magnitude colon and the duration
+        colon on opposite sides, so they never collide.
+        """
         spec = (spec or '').strip()
         if not spec:
             return None
 
-        if ':' in spec:
-            fault_type, _, raw_magnitude = spec.partition(':')
+        fault_part, _, timing_part = spec.partition('@')
+
+        if ':' in fault_part:
+            fault_type, _, raw_magnitude = fault_part.partition(':')
             try:
                 magnitude = float(raw_magnitude)
             except ValueError:
@@ -133,7 +148,7 @@ class FaultInjector(Node):
                     f"'{spec}'. Expected a number.")
                 raise SystemExit(1)
         else:
-            fault_type, magnitude = spec, None
+            fault_type, magnitude = fault_part, None
 
         sensor_definitions = self._definitions.get(sensor, {})
         if fault_type not in sensor_definitions:
@@ -145,6 +160,7 @@ class FaultInjector(Node):
             raise SystemExit(1)
 
         definition = sensor_definitions[fault_type]
+
         if magnitude is None:
             magnitude = definition.get('default_magnitude')
             if magnitude is not None:
@@ -152,13 +168,37 @@ class FaultInjector(Node):
                     f'{sensor}:{fault_type} using default magnitude '
                     f'{magnitude}')
 
+        start = float(definition.get('start', 0.0))
+        duration = (None if definition.get('duration') is None
+                    else float(definition['duration']))
+
+        if timing_part:
+            raw_start, sep, raw_duration = timing_part.partition(':')
+            try:
+                start = float(raw_start)
+            except ValueError:
+                self.get_logger().error(
+                    f"Bad start time '{raw_start}' in {sensor} fault "
+                    f"'{spec}'. Expected a number.")
+                raise SystemExit(1)
+            if sep:
+                try:
+                    duration = float(raw_duration)
+                except ValueError:
+                    self.get_logger().error(
+                        f"Bad duration '{raw_duration}' in {sensor} fault "
+                        f"'{spec}'. Expected a number.")
+                    raise SystemExit(1)
+            self.get_logger().info(
+                f'{sensor}:{fault_type} timing overridden: '
+                f'start={start}s duration={duration}s')
+
         return FaultSpec(
             sensor=sensor,
             fault_type=fault_type,
             magnitude=magnitude,
-            start=float(definition.get('start', 0.0)),
-            duration=(None if definition.get('duration') is None
-                      else float(definition['duration'])),
+            start=start,
+            duration=duration,
         )
 
     # ---------- timing ----------
@@ -221,10 +261,20 @@ class FaultInjector(Node):
         self._imu_publisher.publish(msg)
 
     def _on_wheel(self, msg):
-        if self._should_apply(self._wheel_fault):
-            fault = self._wheel_fault
+        fault = self._wheel_fault
+        if self._should_apply(fault):
             if fault.fault_type == 'dropout':
-                return  # withhold the message entirely
+                return  # withhold entirely
+            if fault.fault_type == 'freeze':
+                if self._last_wheel_msg is not None:
+                    frozen = self._last_wheel_msg
+                    # re-stamp so the message looks current: a hung sensor
+                    # keeps emitting fresh timestamps carrying stale data.
+                    frozen.header.stamp = self.get_clock().now().to_msg()
+                    self._wheel_publisher.publish(frozen)
+                return
+        # normal passthrough — also remember this as the last good message
+        self._last_wheel_msg = msg
         self._wheel_publisher.publish(msg)
 
 
