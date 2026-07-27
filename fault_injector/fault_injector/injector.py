@@ -222,8 +222,9 @@ class FaultInjector(Node):
 
     def _on_wheel(self, msg):
         if self._should_apply(self._wheel_fault):
-            # Wheel fault types land here as they are implemented.
-            pass
+            fault = self._wheel_fault
+            if fault.fault_type == 'dropout':
+                return  # withhold the message entirely
         self._wheel_publisher.publish(msg)
 
 

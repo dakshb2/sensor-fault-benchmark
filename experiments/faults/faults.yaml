@@ -29,10 +29,8 @@ wheel:
   topic_raw: /wheel/odometry/raw
   topic_out: /wheel/odometry
 
-  # Placeholder for the next fault type. Not yet implemented in the injector;
-  # listed so the schema shape is visible.
-  # dropout:
-  #   description: Stop republishing wheel odometry entirely.
-  #   default_magnitude: null
-  #   start: 12.0
-  #   duration: 3.0
+  dropout:
+    description: Stop republishing wheel odometry entirely for the window.
+    default_magnitude: null
+    start: 12.0
+    duration: 3.0
