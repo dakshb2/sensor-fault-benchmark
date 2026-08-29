@@ -180,6 +180,40 @@ sensor faults matter. `freeze` on straight is the one non-significant cell, and
 sensibly so: that segment is constant-velocity, so a frozen velocity reading is
 approximately correct.
 
+### Failure signatures
+
+Each run can be plotted with `experiments/scripts/plot_run.py`, which draws the
+ground-truth and estimated paths together with instantaneous and cumulative
+error, marking fault onset.
+
+![velocity slip on the straight trajectory](docs/figures/straight_slip.png)
+
+*Wheel slip (velocity scaled to 0.5) on the straight run. Both paths lie on the
+same line, but the estimate stops short: the filter believes the robot travelled
+1.67 m when it actually travelled 2.42 m. Error grows linearly while the robot
+moves, then holds flat once it stops.*
+
+![wheel dropout on the box trajectory](docs/figures/box_dropout.png)
+
+*Wheel dropout on box (10-19 s). With no odometry, the filter has no forward-speed
+information along the long straight legs and the estimate leaves the arena
+entirely, peaking at 2.9 m of error. When odometry returns the error stops
+growing but the ~1 m already accumulated is permanent -- dead reckoning cannot
+correct past drift.*
+
+![wheel dropout on the figure-eight trajectory](docs/figures/figure_eight_dropout.png)
+
+*The same dropout on figure_eight. Here the estimate merely traces a slightly
+wider second loop, peaking at 0.34 m. On a continuously turning path the gyro
+supplies most of what matters, so losing wheel odometry costs far less. The
+contrast with the box case is the clearest evidence that fault severity depends
+on trajectory geometry.*
+
+In every case position error begins rising a few seconds *after* fault onset:
+faults corrupt rates (velocity, turn rate), which must integrate before they
+appear as position error. That delay is the window in which a detector could act
+before the estimate is meaningfully damaged.
+
 ### Degradation curves
 
 Two parameter sweeps on figure_eight, showing that the benchmark resolves
