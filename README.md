@@ -92,6 +92,9 @@ source install/setup.bash
 gate fails -- the ROS graph not being empty after teardown, or the robot not
 being at the origin at spawn. It prints the ATE at the end.
 
+To score your own estimator instead of the reference EKF, see
+[ADD_YOUR_ESTIMATOR.md](ADD_YOUR_ESTIMATOR.md).
+
 ## Fault specification
 
 Faults are named on the command line, one per sensor. A sensor with no flag runs
