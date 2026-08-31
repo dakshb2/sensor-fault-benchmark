@@ -1,0 +1,11 @@
+# Keep the build context small and the image reproducible: everything here is
+# either regenerated inside the container or irrelevant to it.
+
+build/
+install/
+log/
+results/
+.git/
+**/__pycache__/
+*.pyc
+docs/figures/

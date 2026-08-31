@@ -52,8 +52,17 @@ def generate_launch_description():
         'wheel_fault', default_value='',
         description="Wheel fault, e.g. 'dropout'. Empty means clean.")
 
+    # In a container there is no display, so Qt's GUI cannot create a render
+    # context and aborts the whole process. IGN_GAZEBO_HEADLESS=1 (set in the
+    # Dockerfile) switches to server-only mode; on a desktop the GUI still runs.
+    headless = os.environ.get('IGN_GAZEBO_HEADLESS', '') == '1'
+    gz_cmd = ['ign', 'gazebo', '-r', '-v', '3']
+    if headless:
+        gz_cmd.append('-s')
+    gz_cmd.append(world_file)
+
     gazebo = ExecuteProcess(
-        cmd=['ign', 'gazebo', '-r', '-v', '3', world_file],
+        cmd=gz_cmd,
         output='screen',
     )
 

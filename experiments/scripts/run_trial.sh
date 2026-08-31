@@ -4,7 +4,7 @@
 # Runs teardown -> launch -> origin check -> record -> drive -> score -> teardown,
 # refusing to proceed if any integrity gate fails.
 
-WS=~/sensor-fault-benchmark
+WS="${SFB_WS:-$HOME/sensor-fault-benchmark}"
 
 # Source ROS with nounset OFF — its setup scripts reference unset variables.
 set +u
