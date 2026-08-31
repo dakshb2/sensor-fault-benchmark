@@ -6,22 +6,19 @@ precisely specified fault into a raw sensor stream, and computes standard
 trajectory-error metrics (ATE/RPE via [evo](https://github.com/MichaelGrupp/evo))
 against ground truth.
 
-Stage 1 (the clean-run harness) and Stage 2 (fault injection) are complete: five
-fault types across two sensors, scheduled fault windows, a scorecard sweeping the
-full fault x trajectory matrix, run plotting, and Docker packaging for
-single-command reproduction. A fault detection layer is a possible extension, not
-currently in development.
+Five fault types across two sensors, scheduled fault windows, a scorecard
+sweeping the full fault x trajectory matrix, run plotting, and Docker packaging
+for single-command reproduction.
 
-The goal is not a new fault-injection or fault-detection technique -- both are
-well established. The goal is to make estimator comparisons easier to reproduce
-by fixing the simulation, trajectory, fault configuration, timing, and scoring
-in one place.
+The goal is not a new fault-injection technique -- fault injection is well
+established. The goal is to make estimator comparisons easier to reproduce by
+fixing the simulation, trajectory, fault configuration, timing, and scoring in
+one place.
 
 ## Integrity model
 
 The package structure and topic wiring keep fault injection, estimation, and
-scoring separate, so a future detection method cannot draw on information it
-should not have:
+scoring separate, so results from different estimators stay comparable:
 
 - **Faults are injected into raw sensor streams** (`/imu/raw`,
   `/wheel/odometry/raw`). The injector republishes on the clean topics (`/imu`,
@@ -35,23 +32,21 @@ should not have:
   simulator start and trial start varies by several seconds between runs, so
   anchoring to the trial keeps a fault landing at the same point in the path
   every time.
-- **Ground truth is consumed only by the `scoring` package.** The estimator, the
-  fault injector, and any future detector never subscribe to it. Corruption
-  depends only on the incoming message and elapsed trial time, never on where
-  the robot actually is.
+- **Ground truth is consumed only by the `scoring` package.** The estimator and
+  the fault injector never subscribe to it. Corruption depends only on the
+  incoming message and elapsed trial time, never on where the robot actually is.
 - **The estimator owns `odom -> base_link` alone.** The simulator's odometry TF
   broadcast is redirected to an unbridged topic so nothing competes with, or
   masks, the estimator's transform.
 
 ## Architecture
 
-| package          | role                                           | ground truth access |
-|------------------|------------------------------------------------|---------------------|
-| `sim_bringup`    | robot, world, sensor bridge, EKF               | none                |
-| `scoring`        | ground-truth tap, ATE/RPE (TUM export + evo)   | yes -- only here    |
-| `experiments`    | trajectory library, trial runner, scorecard    | none                |
-| `fault_injector` | corrupts raw sensor streams (scheduled)        | none                |
-| `fdir`           | detect / isolate / recover (stub, see Roadmap) | none                |
+| package          | role                                          | ground truth access |
+|------------------|-----------------------------------------------|---------------------|
+| `sim_bringup`    | robot, world, sensor bridge, EKF              | none                |
+| `scoring`        | ground-truth tap, ATE/RPE (TUM export + evo)  | yes -- only here    |
+| `experiments`    | trajectory library, trial runner, scorecard   | none                |
+| `fault_injector` | corrupts raw sensor streams (scheduled)       | none                |
 
 The estimator is a `robot_localization` EKF fusing wheel-odometry planar
 velocities (vx, vyaw) with IMU yaw rate. It runs in dead-reckoning mode
@@ -223,8 +218,7 @@ on trajectory geometry.*
 
 In every case position error begins rising a few seconds *after* fault onset:
 faults corrupt rates (velocity, turn rate), which must integrate before they
-appear as position error. That delay is the window in which a detector could act
-before the estimate is meaningfully damaged.
+appear as position error.
 
 ### Degradation curves
 
@@ -309,17 +303,13 @@ during acceleration, not a static tilt.
   trajectory has finished produces a run that scores as clean. The scorecard sets
   per-trajectory timings for this reason.
 
-## Roadmap
+## Status
 
-- **Stage 1 (complete):** clean-run simulation, EKF, scoring, one-command trials
-  with integrity gates, characterised noise floors.
-- **Stage 2 (complete):** scenario-driven fault injector with scheduled windows,
-  five fault types across two sensors, command-line timing overrides, the fault
+- **Clean-run harness:** simulation, EKF, scoring, one-command trials with
+  integrity gates, characterised noise floors across three trajectories.
+- **Fault injection:** scenario-driven injector with scheduled windows, five
+  fault types across two sensors, command-line timing overrides, the fault
   scorecard, run plotting, and Docker packaging for single-command reproduction.
-- **Stage 3 (not planned):** innovation-based detection (NIS / chi-squared
-  gating), cross-consistency isolation, and drop-and-readmit recovery. The
-  architecture keeps this separable -- the `fdir` package exists as a stub and
-  cannot access ground truth -- but it is not currently being built.
 
 ## License
 
