@@ -162,9 +162,16 @@ short trajectory had already finished.
 | `clean` | 0.041 | 0.026 | 0.197 |
 | `yaw_bias:0.2` | 1.092 (Y) | 0.382 (Y) | 0.654 (Y) |
 | `drift:0.02` | 0.796 (Y) | 0.068 (Y) | 0.439 (Y) |
-| `dropout` | 0.960 (Y) | 0.055 (Y) | 0.203 (Y) |
-| `freeze` | 0.723 (Y) | 0.024 (n) | 0.526 (Y) |
+| `dropout` | 0.960 (Y) | 0.055 (Y) | 0.203 (Y, n=3) |
+| `freeze` | 0.723 (Y) | 0.023 (n, n=3) | 0.526 (Y) |
 | `slip:0.5` | 0.583 (Y) | 0.467 (Y) | 0.239 (Y) |
+
+Cells are single runs except the two marginal ones, which were repeated three
+times: figure_eight `dropout` (mean 0.203, a 2.9% increase against a 1.0% noise
+floor -- the narrowest significant margin in the table) and straight `freeze`
+(mean 0.023, inside the clean baseline's own spread and so indistinguishable
+from it). A freeze costs nothing on a constant-velocity segment, because the
+held value stays approximately correct.
 
 **Which sensor is load-bearing depends on the trajectory.** This is the main
 result, and it is not visible from any single trajectory:
