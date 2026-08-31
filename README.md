@@ -289,15 +289,21 @@ during acceleration, not a static tilt.
 - **Fault timing must fit the trajectory.** A fault scheduled after a short
   trajectory has finished produces a run that scores as clean. The scorecard sets
   per-trajectory timings for this reason.
+- **`ros-humble-ros-gz-sim` has no published arm64 binary.** `apt-cache madison`
+  shows a Sources entry but no arm64 Packages entry, so `apt-get install` cannot
+  find it even though the package exists. It was installable when this project
+  was set up and is not now. The Dockerfile builds it from source instead, which
+  additionally needs `libgflags-dev`. This is the concrete reason the container
+  matters: the reference environment can no longer be reconstructed from current
+  repositories by following install instructions.
 
 ## Roadmap
 
 - **Stage 1 (complete):** clean-run simulation, EKF, scoring, one-command trials
   with integrity gates, characterised noise floors.
-- **Stage 2 (mostly complete):** scenario-driven fault injector with scheduled
-  windows, five fault types across two sensors, command-line timing overrides,
-  and the fault scorecard. Remaining: Docker packaging for one-command
-  reproduction.
+- **Stage 2 (complete):** scenario-driven fault injector with scheduled windows,
+  five fault types across two sensors, command-line timing overrides, the fault
+  scorecard, run plotting, and Docker packaging for single-command reproduction..
 - **Stage 3:** innovation-based detection (NIS / chi-squared gating),
   cross-consistency isolation, and drop-and-readmit recovery, validated by
   running through the Stage 2 benchmark and kept architecturally separate from
