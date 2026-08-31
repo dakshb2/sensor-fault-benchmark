@@ -6,10 +6,11 @@ precisely specified fault into a raw sensor stream, and computes standard
 trajectory-error metrics (ATE/RPE via [evo](https://github.com/MichaelGrupp/evo))
 against ground truth.
 
-Stage 1 (the clean-run harness) and the Stage 2 fault injector are complete:
-five fault types across two sensors, scheduled fault windows, and a scorecard
-sweeping the full fault x trajectory matrix. Docker packaging and a fault
-detection layer are still to come.
+Stage 1 (the clean-run harness) and Stage 2 (fault injection) are complete: five
+fault types across two sensors, scheduled fault windows, a scorecard sweeping the
+full fault x trajectory matrix, run plotting, and Docker packaging for
+single-command reproduction. A fault detection layer is a possible extension, not
+currently in development.
 
 The goal is not a new fault-injection or fault-detection technique -- both are
 well established. The goal is to make estimator comparisons easier to reproduce
@@ -44,13 +45,13 @@ should not have:
 
 ## Architecture
 
-| package          | role                                          | ground truth access |
-|------------------|-----------------------------------------------|---------------------|
-| `sim_bringup`    | robot, world, sensor bridge, EKF              | none                |
-| `scoring`        | ground-truth tap, ATE/RPE (TUM export + evo)  | yes -- only here    |
-| `experiments`    | trajectory library, trial runner, scorecard   | none                |
-| `fault_injector` | corrupts raw sensor streams (scheduled)       | none                |
-| `fdir`           | detect / isolate / recover (Stage 3 stub)     | none                |
+| package          | role                                           | ground truth access |
+|------------------|------------------------------------------------|---------------------|
+| `sim_bringup`    | robot, world, sensor bridge, EKF               | none                |
+| `scoring`        | ground-truth tap, ATE/RPE (TUM export + evo)   | yes -- only here    |
+| `experiments`    | trajectory library, trial runner, scorecard    | none                |
+| `fault_injector` | corrupts raw sensor streams (scheduled)        | none                |
+| `fdir`           | detect / isolate / recover (stub, see Roadmap) | none                |
 
 The estimator is a `robot_localization` EKF fusing wheel-odometry planar
 velocities (vx, vyaw) with IMU yaw rate. It runs in dead-reckoning mode
@@ -66,8 +67,10 @@ meant to measure, so there deliberately is not one.
 
 Developed and tested on Ubuntu 22.04 ARM64 in a UTM VM on Apple Silicon, at a
 real-time factor of about 0.7. Scoring is anchored to simulation time rather than
-wall-clock, which should make results less sensitive to host-machine speed; this
-has not yet been verified across multiple machines.
+wall-clock, which should make results less sensitive to host-machine speed.
+Container runs on the same host fall inside the measured noise floors (see
+[DOCKER_SETUP.md](DOCKER_SETUP.md)), but this has not been checked across
+physically different machines.
 
 ## Quickstart
 
@@ -92,8 +95,9 @@ source install/setup.bash
 gate fails -- the ROS graph not being empty after teardown, or the robot not
 being at the origin at spawn. It prints the ATE at the end.
 
-To score your own estimator instead of the reference EKF, see
-[ADD_YOUR_ESTIMATOR.md](ADD_YOUR_ESTIMATOR.md).
+To run without installing ROS or Gazebo locally, see
+[DOCKER_SETUP.md](DOCKER_SETUP.md). To score your own estimator instead of the
+reference EKF, see [ADD_YOUR_ESTIMATOR.md](ADD_YOUR_ESTIMATOR.md).
 
 ## Fault specification
 
@@ -150,12 +154,12 @@ but only by a percent or so on figure_eight.
 
 ### Fault scorecard
 
-Every fault against every trajectory, one run per cell, scored against the
-same-session clean run. `Y` means the degradation exceeds that trajectory's noise
-floor. Fault start/window is set per trajectory so the fault always lands inside
-the driving phase (box 10/9 s, straight 3/3 s, figure_eight 12/9 s) -- the
-trajectories differ in length, so a single absolute start time would fire after a
-short trajectory had already finished.
+Every fault against every trajectory, scored against the same-session clean run.
+`Y` means the degradation exceeds that trajectory's noise floor. Fault
+start/window is set per trajectory so the fault always lands inside the driving
+phase (box 10/9 s, straight 3/3 s, figure_eight 12/9 s) -- the trajectories
+differ in length, so a single absolute start time would fire after a short
+trajectory had already finished.
 
 | fault | box | straight | figure_eight |
 |-------|-----|----------|--------------|
@@ -186,9 +190,7 @@ result, and it is not visible from any single trajectory:
   reported velocity destroys the only quantity that matters.
 
 A benchmark using one trajectory would draw the wrong conclusion about which
-sensor faults matter. `freeze` on straight is the one non-significant cell, and
-sensibly so: that segment is constant-velocity, so a frozen velocity reading is
-approximately correct.
+sensor faults matter.
 
 ### Failure signatures
 
@@ -205,11 +207,11 @@ moves, then holds flat once it stops.*
 
 ![wheel dropout on the box trajectory](docs/figures/box_dropout.png)
 
-*Wheel dropout on box (10-19 s). With no odometry, the filter has no forward-speed
-information along the long straight legs and the estimate leaves the arena
-entirely, peaking at 2.9 m of error. When odometry returns the error stops
-growing but the ~1 m already accumulated is permanent -- dead reckoning cannot
-correct past drift.*
+*Wheel dropout on box (10-19 s). With no odometry, the filter has no
+forward-speed information along the long straight legs and the estimate leaves
+the arena entirely, peaking at 2.9 m of error. When odometry returns the error
+stops growing but the ~1 m already accumulated is permanent -- dead reckoning
+cannot correct past drift.*
 
 ![wheel dropout on the figure-eight trajectory](docs/figures/figure_eight_dropout.png)
 
@@ -253,9 +255,8 @@ reaches a larger final bias than `yaw_bias:0.2` but scores lower (0.617 vs
 0.705), because a growing fault spends its early seconds nearly harmless. When
 the error arrives matters as much as how large it gets.
 
-All cells and sweep points are single runs. The large ratios are far outside the
-noise floors, but the marginal cells would need replication before being treated
-as settled.
+Sweep points are single runs. The large ratios are far outside the noise floors;
+the two marginal scorecard cells were replicated, as noted above.
 
 ## Methodology
 
@@ -283,6 +284,17 @@ during acceleration, not a static tilt.
 
 - **numpy pinning.** `evo` may pull numpy 2.x, which is binary-incompatible with
   the system SciPy and with ROS 2 Humble's Python packages. Pin `numpy<1.25`.
+- **`ros-humble-ros-gz-sim` has no published arm64 binary.** `apt-cache madison`
+  shows a Sources entry but no arm64 Packages entry, so `apt-get install` cannot
+  find it even though the package exists. It was installable when this project
+  was set up and is not now. The Dockerfile builds it from source instead, which
+  additionally needs `libgflags-dev`. This is the concrete reason the container
+  matters: the reference environment can no longer be reconstructed from current
+  repositories by following install instructions.
+- **Gazebo's GUI aborts without a display.** Qt fails to create a render context
+  and calls `abort()`, taking the server down with it. The launch file reads
+  `IGN_GAZEBO_HEADLESS` and switches to `ign gazebo -s` (server only) when set,
+  which is what the container does.
 - **Gazebo Fortress `JointStatePublisher` ignores `<update_rate>`** and publishes
   every physics step (~1000 sim-Hz). `/joint_states` is only used for wheel
   visualization here, so this is left as-is.
@@ -296,13 +308,6 @@ during acceleration, not a static tilt.
 - **Fault timing must fit the trajectory.** A fault scheduled after a short
   trajectory has finished produces a run that scores as clean. The scorecard sets
   per-trajectory timings for this reason.
-- **`ros-humble-ros-gz-sim` has no published arm64 binary.** `apt-cache madison`
-  shows a Sources entry but no arm64 Packages entry, so `apt-get install` cannot
-  find it even though the package exists. It was installable when this project
-  was set up and is not now. The Dockerfile builds it from source instead, which
-  additionally needs `libgflags-dev`. This is the concrete reason the container
-  matters: the reference environment can no longer be reconstructed from current
-  repositories by following install instructions.
 
 ## Roadmap
 
@@ -310,11 +315,11 @@ during acceleration, not a static tilt.
   with integrity gates, characterised noise floors.
 - **Stage 2 (complete):** scenario-driven fault injector with scheduled windows,
   five fault types across two sensors, command-line timing overrides, the fault
-  scorecard, run plotting, and Docker packaging for single-command reproduction..
-- **Stage 3:** innovation-based detection (NIS / chi-squared gating),
-  cross-consistency isolation, and drop-and-readmit recovery, validated by
-  running through the Stage 2 benchmark and kept architecturally separate from
-  it.
+  scorecard, run plotting, and Docker packaging for single-command reproduction.
+- **Stage 3 (not planned):** innovation-based detection (NIS / chi-squared
+  gating), cross-consistency isolation, and drop-and-readmit recovery. The
+  architecture keeps this separable -- the `fdir` package exists as a stub and
+  cannot access ground truth -- but it is not currently being built.
 
 ## License
 
